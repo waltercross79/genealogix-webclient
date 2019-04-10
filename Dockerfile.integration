@@ -30,7 +30,7 @@ COPY --from=builder $BUILDER_SRC_DIR $SRC_DIR
 
 CMD 'npm run $TEST_SCRIPT'
 
-FROM duluca/minimal-nginx-web-server:1:15.7-alpine
+FROM duluca/minimal-nginx-web-server:1.15.7-alpine
 ENV BUILDER_SRC_DIR /usr/src
 COPY --from=builder $BUILDER_SRC_DIR/dist /var/www
 CMD 'nginx'
