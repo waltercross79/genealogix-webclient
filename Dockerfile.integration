@@ -1,0 +1,18 @@
+FROM duluca/minimal-node-build-env:10.14.2
+
+# project variables
+ENV SRC_DIR /usr/src
+ENV GIT_REPO https://github.com/waltercross79/geneatool-ng.git
+ENV SRC_CODE_LOCATION .
+ENV BUILD_SCRIPT build:prod
+
+# get source code
+RUN mkdir -p $SRC_DIR
+WORKDIR $SRC_DIR
+# SSH setup - only needed for private repository
+RUN git clone $GIT_REPO .
+# copy from local repository on the CI server
+# COPY $SRC_CODE_LOCATION .
+
+RUN npm install
+RUN npm run $BUILD_SCRIPT
