@@ -1,4 +1,4 @@
-FROM duluca/minimal-node-build-env:10.14.2
+FROM duluca/minimal-node-build-env:10.14.2 as builder
 
 # project variables
 ENV SRC_DIR /usr/src
@@ -16,3 +16,21 @@ RUN git clone $GIT_REPO .
 
 RUN npm install
 RUN npm run $BUILD_SCRIPT
+
+# tester stage
+FROM slapers/alpine-node-chromium as tester
+ENV BUILDER_SRC_DIR /usr/src
+ENV SRC_DIR /usr/src
+ENV TEST_SCRIPT test:prod
+
+RUN mkdir -p $SRC_DIR
+WORKDIR $SRC_DIR
+
+COPY --from=builder $BUILDER_SRC_DIR $SRC_DIR
+
+CMD 'npm run $TEST_SCRIPT'
+
+FROM duluca/minimal-nginx-web-server:1:15.7-alpine
+ENV BUILDER_SRC_DIR /usr/src
+COPY --from=builder $BUILDER_SRC_DIR/dist /var/www
+CMD 'nginx'
