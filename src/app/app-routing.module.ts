@@ -6,9 +6,9 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full'}, /* matching empty path requires full match instead of the default - prefix */
   { path: 'home', component: HomeComponent },
-  { path: 'manager', loadChildren: './manager/manager.module#ManagerModule' },
-  { path: 'genealogist', loadChildren: './genealogist/genealogist.module#GenealogistModule' },
-  { path: 'user', loadChildren: './user/user.module#UserModule' },
+  { path: 'manager', loadChildren: () => import('./manager/manager.module').then(m => m.ManagerModule) },
+  { path: 'genealogist', loadChildren: () => import('./genealogist/genealogist.module').then(m => m.GenealogistModule) },
+  { path: 'user', loadChildren: () => import('./user/user.module').then(m => m.UserModule) },
   { path: '**', component: PageNotFoundComponent } /* any route that is not matched */ 
 ];
 
