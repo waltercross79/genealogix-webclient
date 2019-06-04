@@ -7,7 +7,7 @@ const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full'}, /* matching empty path requires full match instead of the default - prefix */
   { path: 'home', component: HomeComponent },
   { path: 'manager', loadChildren: () => import('./manager/manager.module').then(m => m.ManagerModule) },
-  { path: 'genealogist', loadChildren: () => import('./genealogist/genealogist.module').then(m => m.GenealogistModule) },
+  { path: 'research', loadChildren: () => import('./research/research.module').then(m => m.ResearchModule) },
   { path: 'user', loadChildren: () => import('./user/user.module').then(m => m.UserModule) },
   { path: '**', component: PageNotFoundComponent } /* any route that is not matched */ 
 ];
