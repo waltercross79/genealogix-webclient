@@ -1,0 +1,85 @@
+<div fxLayout="column" style="margin-bottom: 20px;">
+  <form [formGroup]="filters" (ngSubmit)="submit()">
+    <div fxLayout="row wrap">
+      <div flex="20" fxLayoutAlign="start center" fxFlex="1 1 20%">Record Date:</div>
+      <div fxLayout="row wrap" fxLayoutGap="10px">
+        <mat-form-field appearance="outline">
+          <mat-label>From:</mat-label>
+          <input matInput type="date" formControlName="recordDateFrom" />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>To:</mat-label>
+          <input matInput type="date" formControlName="recordDateTo" />
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div fxLayout="row wrap">
+      <div fxLayoutAlign="start center" fxFlex="1 1 20%">Record Type:</div>
+      <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px" 
+        style="margin-bottom: 20px; padding: 20px; border: solid rgba(0,0,0,.12) 1px; border-radius: 5px;">
+          <mat-checkbox formControlName="includeBirths">Birth</mat-checkbox>
+          <mat-checkbox formControlName="includeDeaths">Death</mat-checkbox>
+          <mat-checkbox formControlName="includeMarriages">Marriage</mat-checkbox>
+      </div>
+    </div>
+
+    <div fxLayout="row wrap">
+      <div fxLayoutAlign="start center" fxFlex="1 1 20%">Location:</div>
+      <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="10px">
+        <mat-form-field appearance="outline">
+          <mat-label>Street:</mat-label>
+          <input matInput type="text" formControlName="street" />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Number:</mat-label>
+          <input matInput type="text" formControlName="number" />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Town:</mat-label>
+          <input matInput type="text" formControlName="town" />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Country:</mat-label>
+          <input matInput type="text" formControlName="country" />
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div fxLayout="row wrap">
+      <div fxLayoutAlign="start center" fxFlex="1 1 20%">Registrar:</div>
+      <div fxLayout="row wrap" fxLayoutGap="10px">
+        <mat-form-field appearance="outline">
+          <mat-label>Registry:</mat-label>
+          <input matInput type="text" formControlName="registry" />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Folio:</mat-label>
+          <input matInput type="text" formControlName="folio" />
+        </mat-form-field>      
+      </div>     
+    </div>
+
+    <div fxLayout="row wrap">
+      <div fxLayoutAlign="start center" fxFlex="1 1 20%">Person:</div>
+      <div fxLayout="row" fxLayoutGap="10px">
+        <div>
+          <mat-form-field appearance="outline">
+            <mat-label>First Name:</mat-label>
+            <input matInput type="text" formControlName="firstName" />
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field appearance="outline">
+            <mat-label>LastName:</mat-label>
+            <input matInput type="text" formControlName="lastName" />
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start">      
+      <button mat-raised-button color="primary">Search</button>
+    </div>
+  </form>
+</div>

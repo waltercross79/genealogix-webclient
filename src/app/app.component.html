@@ -1,3 +1,24 @@
+<div class="container">
+    <mat-toolbar color="primary" fxLayoutGap="8px">
+        <button mat-icon-button (click)="sidenav.toggle()"><mat-icon>menu</mat-icon></button>      
+        <a mat-button routerLink="/home"><mat-icon svgIcon="family_tree"></mat-icon><span fxStyle="h2">GeneaTool</span></a>
+        <span class="flex-spacer"></span>
+        <button mat-mini-fab routerLink="/research" matTooltip="Research" aria-label="Research records and trees"><mat-icon>account_circle</mat-icon></button>      
+        <button mat-mini-fab routerLink="/user/logout" matTooltip="Logout" aria-label="Logout"><mat-icon>lock_open</mat-icon></button>
+    </mat-toolbar>
+    <mat-sidenav-container class="sidenav-container">
+        <mat-sidenav #sidenav mode="side"
+            fixedTopGap="56">
+            <router-outlet name="side-nav"></router-outlet>
+        </mat-sidenav>
+        <mat-sidenav-content>            
+            <router-outlet></router-outlet>            
+        </mat-sidenav-content>
+    </mat-sidenav-container>
 
-
-<router-outlet></router-outlet>
+    <div class="footer">
+        <div>Icons made by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/" 			    title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" 			    
+        title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a>
+        </div>
+    </div>
+</div>

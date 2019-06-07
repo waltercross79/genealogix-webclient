@@ -7,8 +7,12 @@ import { Component, OnInit } from '@angular/core';
   `],
   template: `
   <div fxLayout="column" fxLayoutAlign="center center">
-    <span class="mat-display-2">Hello, Genealogist!</span>
-    <button mat-raised-button color="primary" routerLink="/manager">Login as Manager</button>
+    <span class="mat-display-2">Hello, Researcher!</span>
+    <mat-form-field>
+      <mat-label>Test Field</mat-label>
+      <input matInput type="text" />
+    </mat-form-field>
+    <button mat-raised-button color="primary" routerLink="/manager">Login as Manager</button>    
   </div>
   `
 })

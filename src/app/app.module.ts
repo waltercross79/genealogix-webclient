@@ -10,7 +10,6 @@ import { MaterialModule } from './material.module';
 import { AdministratorModule } from './administrator/administrator.module';
 import { HomeComponent } from './home/home.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { ResearchModule } from './research/research.module';
 
 @NgModule({
   declarations: [
@@ -26,7 +25,6 @@ import { ResearchModule } from './research/research.module';
     AdministratorModule,
     FlexLayoutModule,
     HttpClientModule,
-    ResearchModule,
   ],
   entryComponents: [HomeComponent],
   exports: [HomeComponent],
