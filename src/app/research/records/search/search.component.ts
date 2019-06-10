@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SearchCriteria } from '../filters/filters.component';
+import { RecordsService } from '../services/records.service';
+import { Record } from '../services/models';
 
 @Component({
   selector: 'app-search',
@@ -8,7 +10,10 @@ import { SearchCriteria } from '../filters/filters.component';
 })
 export class SearchComponent implements OnInit {
 
-  constructor() { }
+  records: Record[] = [];
+  columnsToDisplay = ['recordDate', 'recordType', 'number', 'street', 'town'];
+
+  constructor(private recordsService: RecordsService) { }
 
   ngOnInit() {
   }
@@ -16,5 +21,7 @@ export class SearchComponent implements OnInit {
   onSelectedFilters(filters: SearchCriteria) {
     console.log("Selected filters received in search component...")
     console.log(filters);
+    this.recordsService.find().subscribe(result =>
+      this.records = result);
   }
 }

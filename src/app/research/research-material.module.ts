@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatButtonModule, MatToolbarModule, MatIconModule, MatListModule, MatInputModule, MatCheckboxModule, MatFormFieldModule } from '@angular/material';
+import { MatButtonModule, MatToolbarModule, MatIconModule, MatListModule, 
+  MatInputModule, MatCheckboxModule, MatFormFieldModule, MatTableModule } from '@angular/material';
 import { MaterialModule } from '../material.module';
 
 
@@ -8,11 +9,11 @@ import { MaterialModule } from '../material.module';
   declarations: [],
   imports: [
     CommonModule, MatButtonModule, MatToolbarModule, MatIconModule, MatListModule, MaterialModule,
-    MatInputModule, MatCheckboxModule, MatFormFieldModule
+    MatInputModule, MatCheckboxModule, MatFormFieldModule, MatTableModule
   ],
   exports: [
     MatButtonModule, MatToolbarModule, MatIconModule, MatListModule, MaterialModule,
-    MatInputModule, MatCheckboxModule, MatFormFieldModule
+    MatInputModule, MatCheckboxModule, MatFormFieldModule, MatTableModule
   ]
 })
 export class ResearchMaterialModule { }

@@ -1,5 +1,29 @@
 <div>
     <h2 class="mat-h2">Records Search by Criteria</h2>
     <app-filters (selectedFilters)="onSelectedFilters($event)"></app-filters>
-    <div>Results will be here.</div>
+    
+    <table mat-table [dataSource]="records">
+        <ng-container matColumnDef="recordDate">
+            <th mat-header-cell *matHeaderCellDef> Record Date </th>
+            <td mat-cell *matCellDef="let r"> {{r.recordDate}} </td>
+        </ng-container>
+        <ng-container matColumnDef="recordType">
+            <th mat-header-cell *matHeaderCellDef> Record Type </th>
+            <td mat-cell *matCellDef="let r"> {{r.recordType}} </td>
+        </ng-container>
+        <ng-container matColumnDef="number">
+            <th mat-header-cell *matHeaderCellDef> Number </th>
+            <td mat-cell *matCellDef="let r"> {{r.number}} </td>
+        </ng-container>
+        <ng-container matColumnDef="street">
+            <th mat-header-cell *matHeaderCellDef> Street </th>
+            <td mat-cell *matCellDef="let r"> {{r.street}} </td>
+        </ng-container>
+        <ng-container matColumnDef="town">
+            <th mat-header-cell *matHeaderCellDef> Town </th>
+            <td mat-cell *matCellDef="let r"> {{r.town}} </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+        <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
+    </table>
 </div>
