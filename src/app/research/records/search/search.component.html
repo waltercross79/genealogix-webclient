@@ -2,28 +2,47 @@
     <h2 class="mat-h2">Records Search by Criteria</h2>
     <app-filters (selectedFilters)="onSelectedFilters($event)"></app-filters>
     
-    <table mat-table [dataSource]="records">
-        <ng-container matColumnDef="recordDate">
-            <th mat-header-cell *matHeaderCellDef> Record Date </th>
-            <td mat-cell *matCellDef="let r"> {{r.recordDate}} </td>
-        </ng-container>
-        <ng-container matColumnDef="recordType">
-            <th mat-header-cell *matHeaderCellDef> Record Type </th>
-            <td mat-cell *matCellDef="let r"> {{r.recordType}} </td>
-        </ng-container>
-        <ng-container matColumnDef="number">
-            <th mat-header-cell *matHeaderCellDef> Number </th>
-            <td mat-cell *matCellDef="let r"> {{r.number}} </td>
-        </ng-container>
-        <ng-container matColumnDef="street">
-            <th mat-header-cell *matHeaderCellDef> Street </th>
-            <td mat-cell *matCellDef="let r"> {{r.street}} </td>
-        </ng-container>
-        <ng-container matColumnDef="town">
-            <th mat-header-cell *matHeaderCellDef> Town </th>
-            <td mat-cell *matCellDef="let r"> {{r.town}} </td>
-        </ng-container>
-        <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
-        <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
-    </table>
+    <div fxLayout="row">
+        <mat-table [dataSource]="dataSource" fxFlex="100" matSort>
+            <ng-container matColumnDef="recordDate">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Record Date </mat-header-cell>
+                <mat-cell *matCellDef="let r"> {{r.recordDate | date }} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="recordType">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Record Type </mat-header-cell>
+                <mat-cell *matCellDef="let r"> {{r.recordType | recordType }} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="number">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> No. </mat-header-cell>
+                <mat-cell *matCellDef="let r"> {{r.number}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="street">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Street </mat-header-cell>
+                <mat-cell *matCellDef="let r"> {{r.street}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="town">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Town </mat-header-cell>
+                <mat-cell *matCellDef="let r"> {{r.town}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="actions">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Actions</mat-header-cell>
+                <mat-cell *matCellDef="let r">
+                    <button mat-button (click)="quickView(r.id)" aria-label="Quick View Record">
+                        <mat-icon>folder</mat-icon>
+                    </button>
+                    <a mat-button routerLink="/research/records/edit/{{r.id}}" aria-label="Edit Record">
+                        <mat-icon>edit</mat-icon>
+                    </a>
+                    <button mat-button (click)="delete(r.id)" aria-label="Delete Record">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </mat-cell>
+            </ng-container>
+            <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
+            <mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></mat-row>
+        </mat-table>        
+    </div>
+    <div fxLayout="row" fxLayoutAlign="start">
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    </div>
 </div>

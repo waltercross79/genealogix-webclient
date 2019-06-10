@@ -11,21 +11,22 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { SidenavComponent } from './sidenav.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { MatButtonModule, MatToolbarModule, MatIconModule, MatListModule, MatInputModule, MatCheckboxModule, MatFormFieldModule, MatTableModule } from '@angular/material';
+import { MatButtonModule, MatToolbarModule, MatIconModule, MatListModule, 
+  MatInputModule, MatCheckboxModule, MatFormFieldModule, MatTableModule, 
+  MatPaginatorModule, MatSortModule, MatRadioModule, MatDatepickerModule, MatNativeDateModule } from '@angular/material';
 import { MaterialModule } from 'src/app/material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { RecordsService } from './services/records.service';
+import { RecordTypePipe } from './services/record-type.pipe';
 
 @NgModule({
   declarations: [HomeComponent, FiltersComponent, SearchComponent, 
     EditComponent, AddComponent, ViewerComponent, DetailComponent, 
-    DashboardComponent, SidenavComponent],
+    DashboardComponent, SidenavComponent, RecordTypePipe],
   imports: [
     RecordsRoutingModule, ReactiveFormsModule, CommonModule,
     MatButtonModule, MatToolbarModule, MatIconModule, MatListModule, MaterialModule,
-    MatInputModule, MatCheckboxModule, MatFormFieldModule, FlexLayoutModule, MatTableModule
-  ],
+    MatInputModule, MatCheckboxModule, MatFormFieldModule, FlexLayoutModule, MatTableModule,
+    MatPaginatorModule, MatSortModule, MatRadioModule, MatDatepickerModule, MatNativeDateModule ],
   entryComponents: [HomeComponent],  
-  providers: [RecordsService]
 })
 export class RecordsModule { }

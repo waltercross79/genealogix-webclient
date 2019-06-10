@@ -1,3 +1,69 @@
-<p>
-  edit works!
-</p>
+<div fxLayout="column" style="margin-bottom: 20px;">
+    <form [formGroup]="editor" (ngSubmit)="submit()">
+      <div fxLayout="row wrap">
+        <div flex="20" fxLayoutAlign="start center" fxFlex="1 1 20%">Record Date:</div>
+        <div>
+          <mat-form-field appearance="outline">
+            <mat-label>Date:</mat-label>            
+            <input matInput [matDatepicker]="recordDatePicker" formControlName="recordDate" required>
+            <mat-datepicker-toggle matSuffix [for]="recordDatePicker"></mat-datepicker-toggle>
+            <mat-datepicker #recordDatePicker ></mat-datepicker>
+            <mat-error></mat-error>
+          </mat-form-field>          
+        </div>
+      </div>
+  
+      <div fxLayout="row wrap">
+        <div fxLayoutAlign="start center" fxFlex="1 1 20%">Record Type:</div>
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px" 
+          style="margin-bottom: 20px; padding: 20px; border: solid rgba(0,0,0,.12) 1px; border-radius: 5px;">
+            <mat-radio-group aria-label="Select record type" formControlName="recordType">
+              <mat-radio-button value="1" style="margin-right: 20px;">Birth</mat-radio-button>
+              <mat-radio-button value="2" style="margin-right: 20px;">Death</mat-radio-button>
+              <mat-radio-button value="3">Marriage</mat-radio-button>
+            </mat-radio-group>
+        </div>
+      </div>
+  
+      <div fxLayout="row wrap">
+        <div fxLayoutAlign="start center" fxFlex="1 1 20%">Location:</div>
+        <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="10px">
+          <mat-form-field appearance="outline">
+            <mat-label>Street:</mat-label>
+            <input matInput type="text" formControlName="street" />
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Number:</mat-label>
+            <input matInput type="text" formControlName="number" />
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Town:</mat-label>
+            <input matInput type="text" formControlName="town" />
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Country:</mat-label>
+            <input matInput type="text" formControlName="country" />
+          </mat-form-field>
+        </div>
+      </div>
+  
+      <div fxLayout="row wrap">
+        <div fxLayoutAlign="start center" fxFlex="1 1 20%">Registrar:</div>
+        <div fxLayout="row wrap" fxLayoutGap="10px">
+          <mat-form-field appearance="outline">
+            <mat-label>Registry:</mat-label>
+            <input matInput type="text" formControlName="registry" />
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Folio:</mat-label>
+            <input matInput type="text" formControlName="folio" />
+          </mat-form-field>      
+        </div>     
+      </div>        
+  
+      <div fxLayout="row" fxLayoutAlign="start">      
+        <button mat-raised-button>Cancel</button>
+        <button mat-raised-button color="primary">Save</button>
+      </div>
+    </form>
+  </div>

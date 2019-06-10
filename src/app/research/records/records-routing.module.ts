@@ -1,12 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
-import { SidenavComponent } from './sidenav.component';
 import { SearchComponent } from './search/search.component';
+import { RecordResolver } from './services/record-resolve.guard';
+import { EditComponent } from './edit/edit.component';
 
 const routes: Routes = [  
     { path: '', component: HomeComponent },
-    { path: 'search', component: SearchComponent }    
+    { path: 'search', component: SearchComponent },
+    { path: 'edit', children: [
+      { path: ':id', component: EditComponent, resolve: { record: RecordResolver } }
+    ] }    
 ];
 
 @NgModule({

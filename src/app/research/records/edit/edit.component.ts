@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Record, RecordType } from '../services/models';
+import { RecordsService } from '../services/records.service';
+import { ActivatedRoute } from '@angular/router';
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-edit',
@@ -7,9 +11,51 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditComponent implements OnInit {
 
-  constructor() { }
+  record: Record;
+  id: number;
+  editor: FormGroup;
+  recordDateControl: FormControl = new FormControl('', [
+    Validators.required
+  ]);
+  recordTypeControl: FormControl = new FormControl('', [
+    Validators.required
+  ]);
+
+  constructor(private recordsService: RecordsService,
+    private route: ActivatedRoute,
+    private fb: FormBuilder) { }
 
   ngOnInit() {
+    // get record from resolve guard result
+    this.route.data.subscribe((data: { record: Record}) => {
+      this.record = data.record;
+      this.id = data.record.id;
+      this.buildEditor();      
+    });    
+  }
+
+  buildEditor() {
+    this.recordDateControl.setValue(this.record.recordDate ? 
+      new Date(this.record.recordDate.getFullYear(), 
+        this.record.recordDate.getMonth(), 
+        this.record.recordDate.getDay()) : null);
+    this.recordTypeControl.setValue(this.record.recordType.toString());
+
+    this.editor = this.fb.group({
+      "recordDate": this.recordDateControl,
+      "recordType": this.recordTypeControl,
+      "street": new FormControl(this.record.street),
+      "number": new FormControl(this.record.number),
+      "town": new FormControl(this.record.town),
+      "country": new FormControl(this.record.country),
+      "folio": new FormControl(this.record.folio),
+      "registry": new FormControl(this.record.registry)
+    });
+  }
+
+  submit() {
+    console.log('About to send data to the service.')
+    console.log(this.editor);
   }
 
 }

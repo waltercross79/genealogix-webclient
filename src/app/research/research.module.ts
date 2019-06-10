@@ -5,6 +5,7 @@ import { ResearchComponent } from './research.component';
 import { GtreeModule } from './gtree/gtree.module';
 import { RecordsModule } from './records/records.module';
 import { ResearchMaterialModule } from './research-material.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [ResearchComponent],
@@ -14,6 +15,5 @@ import { ResearchMaterialModule } from './research-material.module';
     GtreeModule,
     RecordsModule,
     ResearchMaterialModule, 
-    CommonModule
-  ]})
+    CommonModule  ]})
 export class ResearchModule { }
