@@ -3,6 +3,7 @@ import { Record, RecordType } from '../services/models';
 import { RecordsService } from '../services/records.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { UiService } from 'src/app/common/ui.service';
 
 @Component({
   selector: 'app-edit',
@@ -24,7 +25,8 @@ export class EditComponent implements OnInit {
   constructor(private recordsService: RecordsService,
     private route: ActivatedRoute,
     private fb: FormBuilder,
-    private router: Router) { }
+    private router: Router,
+    private uiService: UiService) { }
 
   ngOnInit() {
     // get record from resolve guard result
@@ -60,7 +62,21 @@ export class EditComponent implements OnInit {
   }
 
   cancel() {
-    console.log('Leaving here...');
+    console.log('Leaving here...');    
+
+    if(this.editor.dirty) {
+      this.uiService.showDialog("Confirmation", "All changes will be discarded. Do you want to continue?", 
+      "Yes", "No").subscribe((confirmed) => {
+        if(confirmed) {
+          this.navigateToSearch();
+        }
+      });
+    } else {
+      this.navigateToSearch();
+    } 
+  }
+
+  navigateToSearch() {
     this.router.navigate(['/research/records/search']);
   }
 }

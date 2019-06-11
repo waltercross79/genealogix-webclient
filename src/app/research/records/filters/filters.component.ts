@@ -1,7 +1,8 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
-import { fbind } from 'q';
-import { filter } from 'minimatch';
+import { DataService } from 'src/app/common/data.service';
+
+const FILTERS_LABEL: string = "RecordSearchFilters";
 
 @Component({
   selector: 'app-filters',
@@ -9,18 +10,50 @@ import { filter } from 'minimatch';
   styleUrls: ['./filters.component.css']
 })
 export class FiltersComponent implements OnInit {
-
+  
   filters: FormGroup;
 
   @Output() selectedFilters = new EventEmitter<SearchCriteria>();
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private dataService: DataService) { }
 
   ngOnInit() {
     this.buildFilters();
   }
 
   submit() {
+    this.dataService.data[FILTERS_LABEL] = this.filters;
+
+    this.setFilters();
+  }
+
+  buildFilters() {
+    // Check whether filters are stored in data service first.
+    let f = this.dataService.data[FILTERS_LABEL];
+
+    if(f) {
+      this.filters = f;
+      this.setFilters();
+    } else {
+      this.filters = this.fb.group({
+        "recordDateFrom": new FormControl(),
+        "recordDateTo": new FormControl(),
+        "includeBirths": new FormControl(false),
+        "includeDeaths": new FormControl(true),
+        "includeMarriages": new FormControl(true),
+        "street": new FormControl(),
+        "number": new FormControl(),
+        "town": new FormControl(),
+        "country": new FormControl(),
+        "folio": new FormControl(),
+        "registry": new FormControl(),
+        "firstName": new FormControl(),
+        "lastName": new FormControl(),
+      });
+    }
+  }
+
+  setFilters() {
     this.selectedFilters.emit({
       recordDateFrom: this.filters.value.recordDateFrom,
       recordDateTo : this.filters.value.recordDateTo,
@@ -36,24 +69,6 @@ export class FiltersComponent implements OnInit {
       firstName : this.filters.value.firstName,
       lastName : this.filters.value.lastName,
     });
-  }
-
-  buildFilters() {
-    this.filters = this.fb.group({
-      "recordDateFrom": new FormControl(),
-      "recordDateTo": new FormControl(),
-      "includeBirths": new FormControl(false),
-      "includeDeaths": new FormControl(true),
-      "includeMarriages": new FormControl(true),
-      "street": new FormControl(),
-      "number": new FormControl(),
-      "town": new FormControl(),
-      "country": new FormControl(),
-      "folio": new FormControl(),
-      "registry": new FormControl(),
-      "firstName": new FormControl(),
-      "lastName": new FormControl(),
-    })
   }
 }
 
