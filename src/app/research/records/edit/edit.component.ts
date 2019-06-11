@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Record, RecordType } from '../services/models';
+import { Record, RegistryRecord } from '../services/models';
 import { RecordsService } from '../services/records.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
@@ -59,6 +59,23 @@ export class EditComponent implements OnInit {
   submit() {
     console.log('About to send data to the service.')
     console.log(this.editor);
+
+    this.recordsService.save(new RegistryRecord(
+      this.editor.value.recordDate, this.editor.value.recordType,
+      this.editor.value.id, this.editor.value.number, this.editor.value.street,
+      this.editor.value.town, this.editor.value.country, this.editor.value.folio,
+      this.editor.value.registry))
+      .subscribe((r: Record | string) => {
+        if(typeof(r) === 'string') {
+          // There was an error saving. Show the error in toast.
+          this.uiService.showToast(r);
+        } else {
+          this.uiService.showToast('Record saved successfully!');
+          this.router.navigate(['/research/records/' + r.id])
+        }      
+      }, error => {
+        this.uiService.showToast(error);
+      });
   }
 
   cancel() {

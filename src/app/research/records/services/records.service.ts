@@ -55,4 +55,13 @@ export class RecordsService {
       }
     ));      
   }
+
+  save(record: Record) : Observable<Record | string> {
+    let result = new Observable<Record>(observer => {
+      record.id = 99;
+      observer.next(record);
+    });
+
+    return result;
+  }
 }
