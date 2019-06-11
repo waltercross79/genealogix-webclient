@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Record, RecordType } from '../services/models';
 import { RecordsService } from '../services/records.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
@@ -23,7 +23,8 @@ export class EditComponent implements OnInit {
 
   constructor(private recordsService: RecordsService,
     private route: ActivatedRoute,
-    private fb: FormBuilder) { }
+    private fb: FormBuilder,
+    private router: Router) { }
 
   ngOnInit() {
     // get record from resolve guard result
@@ -58,4 +59,8 @@ export class EditComponent implements OnInit {
     console.log(this.editor);
   }
 
+  cancel() {
+    console.log('Leaving here...');
+    this.router.navigate(['/research/records/search']);
+  }
 }
