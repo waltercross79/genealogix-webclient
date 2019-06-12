@@ -3,6 +3,7 @@ import { SearchCriteria } from '../filters/filters.component';
 import { RecordsService } from '../services/records.service';
 import { Record } from '../services/models';
 import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search',
@@ -17,7 +18,7 @@ export class SearchComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
-  constructor(private recordsService: RecordsService) { }
+  constructor(private recordsService: RecordsService, private router: Router) { }
 
   ngOnInit() {
     this.dataSource = new MatTableDataSource<Record>([]);
@@ -30,5 +31,9 @@ export class SearchComponent implements OnInit {
     console.log(filters);
     this.recordsService.find().subscribe(result =>
       this.dataSource.data = result);
+  }
+
+  view(id: number) {
+    this.router.navigate(['/research/records/' + id]);
   }
 }

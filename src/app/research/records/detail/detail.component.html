@@ -1,3 +1,46 @@
-<p>
-  detail works!
-</p>
+<div fxLayout="row" fxLayout.xs="column">
+  <div fxFlex="80">
+    <app-image-viewer [images]="images"
+    [idContainer]="'idOnHTML'"
+    [loadOnInit]="true"></app-image-viewer>
+  </div>
+  <div fxFlex="25" class="record-detail-container">
+    <div fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex="40" fxLayoutAlign="end" class="record-detail-label">ID:</div>
+      <div fxFlex="60" fxLayoutAlign="start" class="record-detail-text">{{ record.id }}</div>
+    </div>
+    <div fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex="40" fxLayoutAlign="end" class="record-detail-label">Date:</div>
+      <div fxFlex="60" fxLayoutAlign="start" class="record-detail-text">{{ record.recordDate | date }}</div>
+    </div>
+    <div fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex="40" fxLayoutAlign="end" class="record-detail-label">Type:</div>
+      <div fxFlex="60" fxLayoutAlign="start" class="record-detail-text">{{ record.recordType | recordType }}</div>
+    </div>    
+    <div fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex="40" fxLayoutAlign="end" class="record-detail-label">No.:</div>
+      <div fxFlex="60" fxLayoutAlign="start" class="record-detail-text">{{ record.number }}</div>
+    </div>
+    <div fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex="40" fxLayoutAlign="end" class="record-detail-label">Street:</div>
+      <div fxFlex="60" fxLayoutAlign="start" class="record-detail-text">{{ record.street }}</div>
+    </div>
+    <div fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex="40" fxLayoutAlign="end" class="record-detail-label">Town:</div>
+      <div fxFlex="60" fxLayoutAlign="start" class="record-detail-text">{{ record.town }}</div>
+    </div>
+    <div fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex="40" fxLayoutAlign="end" class="record-detail-label">Country:</div>
+      <div fxFlex="60" fxLayoutAlign="start" class="record-detail-text">{{ record.country }}</div>
+    </div>
+    <div fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex="40" fxLayoutAlign="end" class="record-detail-label">Folio:</div>
+      <div fxFlex="60" fxLayoutAlign="start" class="record-detail-text">{{ record.folio }}</div>
+    </div>
+    <div fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex="40" fxLayoutAlign="end" class="record-detail-label">Registry:</div>
+      <div fxFlex="60" fxLayoutAlign="start" class="record-detail-text">{{ record.registry }}</div>
+    </div>
+  </div>
+
+</div>

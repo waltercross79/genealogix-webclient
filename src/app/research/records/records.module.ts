@@ -17,6 +17,7 @@ import { MatButtonModule, MatToolbarModule, MatIconModule, MatListModule,
 import { MaterialModule } from 'src/app/material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { RecordTypePipe } from './services/record-type.pipe';
+import { ImageViewerModule } from 'ng2-image-viewer';
 
 @NgModule({
   declarations: [HomeComponent, FiltersComponent, SearchComponent, 
@@ -26,7 +27,8 @@ import { RecordTypePipe } from './services/record-type.pipe';
     RecordsRoutingModule, ReactiveFormsModule, CommonModule,
     MatButtonModule, MatToolbarModule, MatIconModule, MatListModule, MaterialModule,
     MatInputModule, MatCheckboxModule, MatFormFieldModule, FlexLayoutModule, MatTableModule,
-    MatPaginatorModule, MatSortModule, MatRadioModule, MatDatepickerModule, MatNativeDateModule ],
+    MatPaginatorModule, MatSortModule, MatRadioModule, MatDatepickerModule, MatNativeDateModule,
+    ImageViewerModule],
   entryComponents: [HomeComponent],  
 })
 export class RecordsModule { }

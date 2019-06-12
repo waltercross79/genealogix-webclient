@@ -38,7 +38,9 @@
               "src/app/assets/img/icons/family_tree.svg"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "src/custom-theme.scss",
+              "node_modules/ng2-image-viewer/imageviewer.scss"
             ],
             "scripts": [],
             "es5BrowserSupport": true

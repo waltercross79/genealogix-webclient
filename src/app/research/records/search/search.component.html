@@ -27,7 +27,7 @@
             <ng-container matColumnDef="actions">
                 <mat-header-cell *matHeaderCellDef mat-sort-header>Actions</mat-header-cell>
                 <mat-cell *matCellDef="let r">
-                    <button mat-button (click)="quickView(r.id)" aria-label="Quick View Record">
+                    <button mat-button (click)="view(r.id)" aria-label="View Record">
                         <mat-icon>folder</mat-icon>
                     </button>
                     <a mat-button routerLink="/research/records/edit/{{r.id}}" aria-label="Edit Record">
