@@ -1,4 +1,8 @@
+<div>
+    <h2 class="mat-h2">Record Details</h2>
+  </div>
 <div fxLayout="row" fxLayout.xs="column">
+
   <div fxFlex="80">
     <app-image-viewer [images]="images"
     [idContainer]="'idOnHTML'"
@@ -43,6 +47,14 @@
       <div fxFlex="40" fxLayoutAlign="end" class="record-detail-label">Registry:</div>
       <div fxFlex="60" fxLayoutAlign="start" class="record-detail-text">{{ record.registry }}</div>
     </div>
+    <div *ngIf="record.persons.length > 0" fxLayout="row" fxLayoutGap="10px">
+        <div fxFlex="40" fxLayoutAlign="end" class="record-detail-label">People:</div>
+        <div fxFlex="60" fxLayoutAlign="start" class="record-detail-text" fxLayout="column">
+          <div *ngFor="let p of record.persons">
+            {{ p.firstName }} {{ p.lastName }} ({{ p.role | personRole }})
+          </div>
+        </div>
+      </div>
   </div>
 
 </div>

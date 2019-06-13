@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Record, RecordType } from './models';
-import { Observable } from 'rxjs/internal/Observable';
+import { Record, RecordType, PersonRole } from './models';
+import { catchError } from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +25,8 @@ export class RecordsService {
               town: 'Springfield',
               country: '',
               folio: '201', 
-              registry: 'Book 1'  
+              registry: 'Book 1',
+              persons: []  
           },
           { 
               id: 2,
@@ -35,7 +37,8 @@ export class RecordsService {
               town: 'Springville',
               country: 'US',
               folio: '211', 
-              registry: 'Book 2'  
+              registry: 'Book 2',
+              persons: []
           }
       ]);
   });
@@ -51,9 +54,19 @@ export class RecordsService {
         town: 'Springville',
         country: 'US',
         folio: '211', 
-        registry: 'Book 2'  
+        registry: 'Book 2',
+        persons: [
+          { id: 1, firstName: 'Lada', lastName: 'Pada', role: PersonRole.Newborn },
+          { id: 2, firstName: 'Lada', lastName: 'Pada, Sr.', role: PersonRole.Father },
+          { id: 3, firstName: 'Zdenka', lastName: 'Padova', role: PersonRole.Mother }
+        ]  
       }
-    ));      
+    )).pipe(
+      catchError(err => {
+        console.log(err);
+        return throwError(err);
+      })
+    );      
   }
 
   save(record: Record) : Observable<Record | string> {

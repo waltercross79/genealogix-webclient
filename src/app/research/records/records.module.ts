@@ -18,11 +18,12 @@ import { MaterialModule } from 'src/app/material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { RecordTypePipe } from './services/record-type.pipe';
 import { ImageViewerModule } from 'ng2-image-viewer';
+import { PersonRolePipe } from './services/person-role.pipe';
 
 @NgModule({
   declarations: [HomeComponent, FiltersComponent, SearchComponent, 
     EditComponent, AddComponent, ViewerComponent, DetailComponent, 
-    DashboardComponent, SidenavComponent, RecordTypePipe],
+    DashboardComponent, SidenavComponent, RecordTypePipe, PersonRolePipe],
   imports: [
     RecordsRoutingModule, ReactiveFormsModule, CommonModule,
     MatButtonModule, MatToolbarModule, MatIconModule, MatListModule, MaterialModule,

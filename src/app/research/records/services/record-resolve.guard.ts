@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
-import { Record } from './models';
-import { Observable, of, EMPTY } from 'rxjs';
-import { mergeMap, take } from 'rxjs/operators';
+import { Record, RegistryRecord } from './models';
+import { Observable, of, EMPTY, throwError } from 'rxjs';
+import { mergeMap, take, catchError, map } from 'rxjs/operators';
 import { RecordsService } from './records.service';
 
 @Injectable({
@@ -17,8 +17,15 @@ export class RecordResolver implements Resolve<Record> {
         
         let id: number = parseInt(route.paramMap.get("id"));
 
-        return this.recordsService.get(id).pipe(
-            take(1),
+        let o = this.recordsService.get(id);
+        let o1 = o.pipe(  
+            take(1),          
+            catchError(err => {
+                console.log(err);
+                return EMPTY;
+            })            
+        );
+        let o2 = o1.pipe(
             mergeMap(record => {
                 if(record) {
                     return of(record);
@@ -26,7 +33,13 @@ export class RecordResolver implements Resolve<Record> {
                     this.router.navigate(['/research/records']);
                     return EMPTY;
                 }
+            }),
+            catchError(err => {
+                console.log(err);
+                return of(undefined);
             })
-        );        
+        );
+
+        return o2;    
     }
 }

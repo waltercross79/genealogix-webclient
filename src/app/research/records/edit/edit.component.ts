@@ -34,7 +34,7 @@ export class EditComponent implements OnInit {
       this.record = data.record;
       this.id = data.record.id;
       this.buildEditor();      
-    });    
+    }, error => { console.log(error); });    
   }
 
   buildEditor() {

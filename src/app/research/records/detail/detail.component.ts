@@ -15,6 +15,10 @@ import { Record } from '../services/models';
   
   .record-detail-text {
     font-weight: bold;
+  }
+  
+  #idOnHTML {
+    margin-top: 50px;
   }`]
 })
 export class DetailComponent implements OnInit {
@@ -26,7 +30,7 @@ export class DetailComponent implements OnInit {
 
   ngOnInit() {
     // get record details from router
-    this.route.data.subscribe((data: {record: Record}) =>{
+    this.route.data.subscribe((data: {record: Record}) =>{      
       this.record = data.record;
     });
 

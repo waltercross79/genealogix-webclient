@@ -5,11 +5,15 @@
       <div fxLayout="row wrap" fxLayoutGap="10px">
         <mat-form-field appearance="outline">
           <mat-label>From:</mat-label>
-          <input matInput type="date" formControlName="recordDateFrom" />
+          <input matInput [matDatepicker]="recordDateFromPicker" formControlName="recordDateFrom">
+            <mat-datepicker-toggle matSuffix [for]="recordDateFromPicker"></mat-datepicker-toggle>
+            <mat-datepicker #recordDateFromPicker color="accent"></mat-datepicker>
         </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>To:</mat-label>
-          <input matInput type="date" formControlName="recordDateTo" />
+          <input matInput [matDatepicker]="recordDateToPicker" formControlName="recordDateTo">
+          <mat-datepicker-toggle matSuffix [for]="recordDateToPicker"></mat-datepicker-toggle>
+          <mat-datepicker #recordDateToPicker color="accent"></mat-datepicker>
         </mat-form-field>
       </div>
     </div>
@@ -17,7 +21,7 @@
     <div fxLayout="row wrap">
       <div fxLayoutAlign="start center" fxFlex="1 1 20%">Record Type:</div>
       <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px" 
-        style="margin-bottom: 20px; padding: 20px; border: solid rgba(0,0,0,.12) 1px; border-radius: 5px;">
+        style="margin-bottom: 20px; padding: 20px; border: solid rgba(108,108, 108) 1px; border-radius: 5px;">
           <mat-checkbox formControlName="includeBirths">Birth</mat-checkbox>
           <mat-checkbox formControlName="includeDeaths">Death</mat-checkbox>
           <mat-checkbox formControlName="includeMarriages">Marriage</mat-checkbox>
