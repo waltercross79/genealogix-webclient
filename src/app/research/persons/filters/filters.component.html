@@ -1,0 +1,69 @@
+<div fxLayout="column" style="margin-bottom: 20px;">
+    <form [formGroup]="filters" (ngSubmit)="submit()">
+      <div fxLayout="row wrap">
+        <div flex="20" fxLayoutAlign="start center" fxFlex="1 1 20%">Date of Birth:</div>
+        <div fxLayout="row wrap" fxLayoutGap="10px">
+          <mat-form-field appearance="outline">
+            <mat-label>From:</mat-label>
+            <input matInput [matDatepicker]="dobDateFromPicker" formControlName="dobFrom">
+              <mat-datepicker-toggle matSuffix [for]="dobDateFromPicker"></mat-datepicker-toggle>
+              <mat-datepicker #dobDateFromPicker color="accent"></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>To:</mat-label>
+            <input matInput [matDatepicker]="dobToPicker" formControlName="dobTo">
+            <mat-datepicker-toggle matSuffix [for]="dobToPicker"></mat-datepicker-toggle>
+            <mat-datepicker #dobToPicker color="accent"></mat-datepicker>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div fxLayout="row wrap">
+        <div flex="20" fxLayoutAlign="start center" fxFlex="1 1 20%">Date of Death:</div>
+        <div fxLayout="row wrap" fxLayoutGap="10px">
+          <mat-form-field appearance="outline">
+            <mat-label>From:</mat-label>
+            <input matInput [matDatepicker]="dodDateFromPicker" formControlName="dodFrom">
+              <mat-datepicker-toggle matSuffix [for]="dodDateFromPicker"></mat-datepicker-toggle>
+              <mat-datepicker #dodDateFromPicker color="accent"></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>To:</mat-label>
+            <input matInput [matDatepicker]="dodToPicker" formControlName="dodTo">
+            <mat-datepicker-toggle matSuffix [for]="dodToPicker"></mat-datepicker-toggle>
+            <mat-datepicker #dodToPicker color="accent"></mat-datepicker>
+          </mat-form-field>
+        </div>
+      </div>
+  
+      <div fxLayout="row wrap">
+        <div fxLayoutAlign="start center" fxFlex="1 1 20%">Person:</div>
+        <div fxLayout="row" fxLayoutGap="10px">
+          <div>
+            <mat-form-field appearance="outline">
+              <mat-label>First Name:</mat-label>
+              <input matInput type="text" formControlName="firstName" />
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field appearance="outline">
+              <mat-label>LastName:</mat-label>
+              <input matInput type="text" formControlName="lastName" />
+            </mat-form-field>
+          </div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="10px">
+          <div fxLayoutAlign="start center" fxFlex="1 1 20%">Gender:</div>
+          <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px" 
+            style="margin-bottom: 20px; padding: 20px; border: solid rgba(108,108, 108) 1px; border-radius: 5px;">
+              <mat-checkbox formControlName="isMale">Male</mat-checkbox>
+              <mat-checkbox formControlName="isFemale">Female</mat-checkbox>
+          </div>
+        </div>
+      </div>
+  
+      <div fxLayout="row" fxLayoutAlign="start">      
+        <button mat-raised-button color="accent">Search</button>
+      </div>
+    </form>
+  </div>

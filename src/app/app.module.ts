@@ -13,13 +13,14 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { UiService } from './common/ui.service';
 import { SimpleDialogComponent } from './common/simple-dialog.component';
 import { DataService } from './common/data.service';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     PageNotFoundComponent,
-    SimpleDialogComponent
+    SimpleDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,6 +30,7 @@ import { DataService } from './common/data.service';
     AdministratorModule,
     FlexLayoutModule,
     HttpClientModule,
+    SharedModule,
   ],
   entryComponents: [HomeComponent, SimpleDialogComponent],
   exports: [HomeComponent],

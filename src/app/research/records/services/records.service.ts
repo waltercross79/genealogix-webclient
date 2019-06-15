@@ -56,9 +56,9 @@ export class RecordsService {
         folio: '211', 
         registry: 'Book 2',
         persons: [
-          { id: 1, firstName: 'Lada', lastName: 'Pada', role: PersonRole.Newborn },
-          { id: 2, firstName: 'Lada', lastName: 'Pada, Sr.', role: PersonRole.Father },
-          { id: 3, firstName: 'Zdenka', lastName: 'Padova', role: PersonRole.Mother }
+          { id: 1, firstName: 'Lada', lastName: 'Pada', role: PersonRole.Newborn, dob: new Date(1979, 9, 26) },
+          { id: 2, firstName: 'Lada', lastName: 'Pada, Sr.', role: PersonRole.Father, dob: new Date(1955, 2, 18) },
+          { id: 3, firstName: 'Zdenka', lastName: 'Padova', role: PersonRole.Mother, dob: new Date(1955, 2, 18) }
         ]  
       }
     )).pipe(

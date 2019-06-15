@@ -2,7 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { DataService } from 'src/app/common/data.service';
 
-const FILTERS_LABEL: string = "RecordSearchFilters";
+const RECORD_FILTERS_ITEM: string = "RECORD_FILTERS_ITEM";
 
 @Component({
   selector: 'app-filters',
@@ -22,14 +22,14 @@ export class FiltersComponent implements OnInit {
   }
 
   submit() {
-    this.dataService.data[FILTERS_LABEL] = this.filters;
+    this.dataService.data[RECORD_FILTERS_ITEM] = this.filters;
 
     this.setFilters();
   }
 
   buildFilters() {
     // Check whether filters are stored in data service first.
-    let f = this.dataService.data[FILTERS_LABEL];
+    let f = this.dataService.data[RECORD_FILTERS_ITEM];
 
     if(f) {
       this.filters = f;
@@ -39,8 +39,8 @@ export class FiltersComponent implements OnInit {
         "recordDateFrom": new FormControl(),
         "recordDateTo": new FormControl(),
         "includeBirths": new FormControl(false),
-        "includeDeaths": new FormControl(true),
-        "includeMarriages": new FormControl(true),
+        "includeDeaths": new FormControl(false),
+        "includeMarriages": new FormControl(false),
         "street": new FormControl(),
         "number": new FormControl(),
         "town": new FormControl(),

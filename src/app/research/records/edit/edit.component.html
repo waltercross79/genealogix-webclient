@@ -65,7 +65,11 @@
             <input matInput type="text" formControlName="folio" />
           </mat-form-field>      
         </div>     
-      </div>        
+      </div>
+      
+      <div>
+        <app-persons [id]="id" [persons]="record.persons"></app-persons>
+      </div>
   
       <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="10px">      
         <button type="button" mat-raised-button (click)="cancel()">Cancel</button>

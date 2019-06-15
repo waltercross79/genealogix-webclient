@@ -68,4 +68,5 @@ export class PersonInRecord {
     lastName: string;
     id: number;
     role: PersonRole;
+    dob: Date;
 }

@@ -1,0 +1,46 @@
+<div>
+    <h2 class="mat-h2">People Identified in the Record</h2>
+  <div fxLayout="row">
+    <mat-table [dataSource]="dataSource" fxFlex="100" matSort>
+      <ng-container matColumnDef="personRole">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Person Role</mat-header-cell>
+        <mat-cell *matCellDef="let p">{{ p.personRole | personRole }}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="firstName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>First Name</mat-header-cell>
+        <mat-cell *matCellDef="let p">{{ p.firstName }}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="lastName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Last Name</mat-header-cell>
+        <mat-cell *matCellDef="let p">{{ p.lastName }}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="dob">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Date of Birth</mat-header-cell>
+        <mat-cell *matCellDef="let p">{{ p.dob | stringDate }}</mat-cell>
+      </ng-container>    
+      <ng-container matColumnDef="actions">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Actions</mat-header-cell>
+          <mat-cell *matCellDef="let p">
+              <button mat-button (click)="view(p.id)" aria-label="View Person In Record Details">
+                  <mat-icon>person</mat-icon>
+              </button>              
+              <button mat-button (click)="remove(r.id)" aria-label="Remove Person from Record">
+                  <mat-icon>delete</mat-icon>
+              </button>
+          </mat-cell>
+        </ng-container>    
+
+      <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
+      <mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></mat-row>
+    </mat-table>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="start">
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </div>
+
+  <div fxLayout="row" fxLayoutAlign="start">
+    <a mat-button [routerLink]="getPersonConnectLink()" aria-label="Click to connect a person to record">
+      <mat-icon color="accent">person_add</mat-icon>
+    </a>
+  </div>
+</div>
