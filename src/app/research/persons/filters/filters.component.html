@@ -51,14 +51,19 @@
               <input matInput type="text" formControlName="lastName" />
             </mat-form-field>
           </div>
-        </div>
-        <div fxLayout="row" fxLayoutGap="10px">
-          <div fxLayoutAlign="start center" fxFlex="1 1 20%">Gender:</div>
-          <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px" 
-            style="margin-bottom: 20px; padding: 20px; border: solid rgba(108,108, 108) 1px; border-radius: 5px;">
-              <mat-checkbox formControlName="isMale">Male</mat-checkbox>
-              <mat-checkbox formControlName="isFemale">Female</mat-checkbox>
-          </div>
+        </div>        
+      </div>
+      <div fxLayout="row">
+        <div fxLayoutAlign="start center" fxFlex="1 1 20%">Gender:</div>
+        <div>           
+            <mat-form-field appearance="outline">
+              <mat-label>Gender:</mat-label>
+              <mat-select formControlName="gender">
+                <mat-option value="">ALL</mat-option>
+                <mat-option value="M">Male</mat-option>
+                <mat-option value="F">Female</mat-option>
+              </mat-select>
+            </mat-form-field>
         </div>
       </div>
   

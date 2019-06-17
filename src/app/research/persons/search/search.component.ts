@@ -8,6 +8,7 @@ import { SearchCriteria } from '../../records/filters/filters.component';
 })
 export class SearchComponent implements OnInit {
 
+  columnsToDisplay = ['firstName', 'lastName', 'dob', 'dod']
   constructor() { }
 
   ngOnInit() {

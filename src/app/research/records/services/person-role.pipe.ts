@@ -15,7 +15,7 @@ export class PersonRolePipe implements PipeTransform {
     switch (value)
     {
         case PersonRole.Bride:
-            return "Birth";
+            return "Bride";
         case PersonRole.Deceased:
             return "Deceased";
         case PersonRole.Father:

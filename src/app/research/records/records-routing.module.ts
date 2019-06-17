@@ -19,6 +19,7 @@ const routes: Routes = [
     ] },    
     
     { path: ':id/persons/connect', component: ConnectPersonsComponent },
+    { path: ':id/persons/search', component: PersonSearchComponent },
     { path: ':id/persons', component: PersonsComponent },    
     { path: ':id', component: DetailComponent, resolve: { record: RecordResolver } },
 ];

@@ -35,8 +35,7 @@ export class FiltersComponent implements OnInit {
         "firstName": new FormControl(),
         "lastName": new FormControl(),
 
-        "isMale": new FormControl(false),
-        "isFemale": new FormControl(false)
+        "gender": new FormControl(''),
       });      
     }
   }  
