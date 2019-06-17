@@ -1,8 +1,13 @@
 <div>
   <h2 class="mat-h2">Person Search by Criteria</h2>
-  <app-filters (selected)="onSelectedFilters($event)"></app-filters>
+  <app-filters (selected)="onSelectedFilters($event)" (cancelled)="onCancelled($event)" [showCancelButton]="isInRecordContext"></app-filters>
   <div layout="row">
     <mat-table [dataSource]="dataSource" matSort>
+        <ng-container matColumnDef="id">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>ID</mat-header-cell>
+            <mat-cell *matCellDef="let p">{{ p.id }}</mat-cell>      
+          </ng-container>
+
       <ng-container matColumnDef="firstName">
         <mat-header-cell *matHeaderCellDef mat-sort-header>First Name</mat-header-cell>
         <mat-cell *matCellDef="let p">{{ p.firstName }}</mat-cell>      
@@ -15,12 +20,12 @@
 
       <ng-container matColumnDef="dob">
         <mat-header-cell *matHeaderCellDef mat-sort-header>Date of Birth</mat-header-cell>
-        <mat-cell *matCellDef="let p">{{ p.dob | date }}</mat-cell>      
+        <mat-cell *matCellDef="let p">{{ p.dateOfBirth | date }}</mat-cell>      
       </ng-container>
 
       <ng-container matColumnDef="dod">
         <mat-header-cell *matHeaderCellDef mat-sort-header>Date of Death</mat-header-cell>
-        <mat-cell *matCellDef="let p">{{ p.dod }}</mat-cell>      
+        <mat-cell *matCellDef="let p">{{ p.dateOfDeath | date }}</mat-cell>      
       </ng-container>
 
       <ng-container matColumnDef="gender">
@@ -30,17 +35,17 @@
 
       <ng-container matColumnDef="actions">
         <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
-        <mat-cell *matCellDef="let r">
-          <button *ngIf="isInRecordContext==true" matButton (click)="connectToRecord()">
+        <mat-cell *matCellDef="let p">
+          <button *ngIf="isInRecordContext==true" mat-button (click)="select(p.id)">
             <mat-icon>check_circle</mat-icon>
           </button>
-          <button *ngIf="isInRecordContext==false" mat-button (click)="view(r.id)" aria-label="View Person">
+          <button *ngIf="isInRecordContext==false" mat-button (click)="view(p.id)" aria-label="View Person">
               <mat-icon>folder</mat-icon>
           </button>
-          <a *ngIf="isInRecordContext==false" mat-button routerLink="/research/persons/edit/{{r.id}}" aria-label="Edit Person">
+          <a *ngIf="isInRecordContext==false" mat-button routerLink="/research/persons/edit/{{p.id}}" aria-label="Edit Person">
               <mat-icon>edit</mat-icon>
           </a>
-          <button *ngIf="isInRecordContext==false" mat-button (click)="delete(r.id)" aria-label="Delete Person">
+          <button *ngIf="isInRecordContext==false" mat-button (click)="delete(p.id)" aria-label="Delete Person">
               <mat-icon>delete</mat-icon>
           </button>
         </mat-cell>      

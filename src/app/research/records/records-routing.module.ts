@@ -16,11 +16,7 @@ const routes: Routes = [
     { path: 'search', component: SearchComponent },
     { path: 'edit', children: [
       { path: ':id', component: EditComponent, resolve: { record: RecordResolver } }
-    ] },    
-    
-    { path: ':id/persons/connect', component: ConnectPersonsComponent },
-    { path: ':id/persons/search', component: PersonSearchComponent },
-    { path: ':id/persons', component: PersonsComponent },    
+    ] },        
     { path: ':id', component: DetailComponent, resolve: { record: RecordResolver } },
 ];
 

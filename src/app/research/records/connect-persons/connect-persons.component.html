@@ -1,11 +1,11 @@
 <div fxLayout="column">
-  <h2 class="mat-h2">Connect Person to Record</h2>
   <div fxLayout="column">
-    <div class="bordered-div">
+    <div class="bordered-div" *ngIf="mode=='edit'">
     <form (ngSubmit)="submit()" [formGroup]="connectedPerson">
       <div fxLayout="row">
         <h4 class="mat-h4">Insert new person details:</h4>
       </div> 
+      <input type="hidden" formControlName="id" />
       <div fxLayout="row" fxLayout.xs="column">
         <div fxFlex="20" fxLayoutAlign="start center">
           Person Role:
@@ -42,7 +42,7 @@
           <div>
             <mat-form-field>
               <mat-label>DOB:</mat-label>            
-              <input matInput [matDatepicker]="dobDatePicker" formControlName="dob" required>
+              <input matInput [matDatepicker]="dobDatePicker" formControlName="dob">
               <mat-datepicker-toggle matSuffix [for]="dobDatePicker"></mat-datepicker-toggle>
               <mat-datepicker #dobDatePicker ></mat-datepicker>
               <mat-error></mat-error>
@@ -51,22 +51,23 @@
         </div>
     </form>
     </div>
-    <div fxLayout="row" class="divider-div">
+    <div fxLayout="row" class="divider-div" *ngIf="mode=='edit'">
       <h3 class="mat-h3"> - OR - </h3>      
     </div>
     <div fxLayout="column" class="bordered-div">
+      <div *ngIf="mode=='edit'">
       <div fxLayout="row">
         <h4 class="mat-h4">Copy details from existing person:</h4>
       </div> 
       <div fxLayout="row">
-      <a mat-raised-button color="primary" [routerLink]="getRecordPersonSearch()" aria-label="Link to search for existing person to connect to record">
+      <button mat-raised-button color="primary" (click)="showSearch()">
         Search Persons
-      </a>
+      </button>
+      </div>
+      </div>      
+      <div *ngIf="mode=='search'">          
+        <app-person-search [isInRecordContext]="true" (selected)="onPersonSelected($event)" (cancelled)="cancelSearch($event)"></app-person-search>          
       </div>
     </div>
-    <div fxLayout="row" class="commands-div" fxLayoutGap="10px">
-      <button type="button" mat-raised-button (click)="cancel()">Cancel</button>
-      <button mat-raised-button color="accent">Submit</button>
-    </div>  
   </div>
 </div>

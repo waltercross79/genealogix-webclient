@@ -1,5 +1,5 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
-import { PersonInRecord } from '../services/models';
+import { Component, OnInit, Input, ViewChild, EventEmitter, Output } from '@angular/core';
+import { PersonInRecord, Record } from '../services/models';
 import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 
 @Component({
@@ -9,12 +9,14 @@ import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 })
 export class PersonsComponent implements OnInit {
 
-  @Input() id: number;
-  @Input() persons: PersonInRecord[];
+  // @Input() id: number;
+  // @Input() persons: PersonInRecord[];
+  @Input() record: Record;
   dataSource: MatTableDataSource<PersonInRecord>
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   columnsToDisplay: string[] = ["personRole", "firstName", "lastName", "dob", "actions"];
+  @Output() addPerson: EventEmitter<any> = new EventEmitter<any>();
 
   constructor() { }
 
@@ -22,7 +24,7 @@ export class PersonsComponent implements OnInit {
     this.dataSource = new MatTableDataSource<PersonInRecord>([]);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
-    this.dataSource.data = this.persons ? this.persons : [];
+    this.dataSource.data = (this.record && this.record.persons) ? this.record.persons : [];
   }
 
   view(id) {
@@ -33,7 +35,7 @@ export class PersonsComponent implements OnInit {
     console.log("Delete from record - person ID:" + id);
   }
 
-  getPersonConnectLink() {
-    return `/research/records/${this.id}/persons/connect`;
+  onAddPersonClicked() {
+    this.addPerson.emit();
   }
 }

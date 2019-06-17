@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { Record, RegistryRecord } from '../services/models';
+import { Record, RegistryRecord, PersonInRecord } from '../services/models';
 import { RecordsService } from '../services/records.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { UiService } from 'src/app/common/ui.service';
+import { MatDialog } from '@angular/material';
+import { ConnectPersonsComponent } from '../connect-persons/connect-persons.component';
+import { ConnectPersonsDialogComponent } from '../connect-persons/connect-persons-dialog.component';
 
 @Component({
   selector: 'app-edit',
@@ -26,7 +29,8 @@ export class EditComponent implements OnInit {
     private route: ActivatedRoute,
     private fb: FormBuilder,
     private router: Router,
-    private uiService: UiService) { }
+    private uiService: UiService,
+    public dialog: MatDialog) { }
 
   ngOnInit() {
     // get record from resolve guard result
@@ -95,5 +99,18 @@ export class EditComponent implements OnInit {
 
   navigateToSearch() {
     this.router.navigate(['/research/records/search']);
+  }
+
+  showConnectPerson() {
+    this.dialog.open(ConnectPersonsDialogComponent, {
+      data: this.record,
+      width: '1000px'
+    }).afterClosed()
+      .subscribe(pir => {
+        if(pir) {
+          // Add PersonInRecord to the current record instance; mark the form 'dirty'.
+          this.record.persons.push(pir);
+        }
+      });
   }
 }

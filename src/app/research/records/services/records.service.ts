@@ -77,4 +77,9 @@ export class RecordsService {
 
     return result;
   }
+
+  addPersonToRecord(record_id: number, firstName: string, lastName: string, 
+    dateOfBirth: Date, person_id: number) : Observable<{ isSuccess: boolean, message: string}> {
+      return new Observable(observer => observer.next());
+  }
 }

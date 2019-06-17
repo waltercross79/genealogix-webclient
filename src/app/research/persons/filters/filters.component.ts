@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { DataService } from 'src/app/common/data.service';
 
@@ -12,7 +12,9 @@ const PERSON_FILTERS_ITEM = "PERSON_FILTERS_ITEM";
 export class FiltersComponent implements OnInit {
 
   filters: FormGroup;
+  @Input() showCancelButton: boolean = false;
   @Output() selected = new EventEmitter<SearchCriteria>();
+  @Output() cancelled = new EventEmitter<boolean>();
   
   constructor(private fb: FormBuilder, private dataService: DataService) { }
 
@@ -38,7 +40,11 @@ export class FiltersComponent implements OnInit {
         "gender": new FormControl(''),
       });      
     }
-  }  
+  }
+  
+  cancel() {
+    this.cancelled.emit(true);
+  }
 
   submit() {
     // raise event
@@ -55,7 +61,7 @@ export class FiltersComponent implements OnInit {
   }
 }
 
-interface SearchCriteria {
+export interface SearchCriteria {
   dobFrom: Date;
   dobTo: Date;
   dodFrom: Date;

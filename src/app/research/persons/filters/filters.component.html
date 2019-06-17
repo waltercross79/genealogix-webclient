@@ -67,8 +67,9 @@
         </div>
       </div>
   
-      <div fxLayout="row" fxLayoutAlign="start">      
+      <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="10px">      
         <button mat-raised-button color="accent">Search</button>
+        <button mat-button type="button" *ngIf="showCancelButton" (click)="cancel()">Cancel</button>
       </div>
     </form>
   </div>

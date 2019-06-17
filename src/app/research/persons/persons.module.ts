@@ -18,6 +18,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatInputModule, MatCheckboxModule, MatFormFieldModule, FlexLayoutModule, MatTableModule,
     MatPaginatorModule, MatSortModule, MatRadioModule, MatDatepickerModule, MatNativeDateModule,
     ReactiveFormsModule, MatSelectModule, MatOptionModule
-  ]
+  ],
+  exports: [SearchComponent]
 })
 export class PersonsModule { }
