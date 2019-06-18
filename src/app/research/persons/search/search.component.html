@@ -37,7 +37,7 @@
         <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
         <mat-cell *matCellDef="let p">
           <button *ngIf="isInRecordContext==true" mat-button (click)="select(p.id)">
-            <mat-icon>check_circle</mat-icon>
+            <mat-icon>check_circle_outline</mat-icon>
           </button>
           <button *ngIf="isInRecordContext==false" mat-button (click)="view(p.id)" aria-label="View Person">
               <mat-icon>folder</mat-icon>

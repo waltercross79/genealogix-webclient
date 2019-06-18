@@ -14,6 +14,9 @@ import { UiService } from './common/ui.service';
 import { SimpleDialogComponent } from './common/simple-dialog.component';
 import { DataService } from './common/data.service';
 import { SharedModule } from './shared/shared.module';
+import { LoginComponent } from './login/login.component';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { UserModule } from './user/user.module';
 
 @NgModule({
   declarations: [
@@ -21,6 +24,7 @@ import { SharedModule } from './shared/shared.module';
     HomeComponent,
     PageNotFoundComponent,
     SimpleDialogComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,7 +34,10 @@ import { SharedModule } from './shared/shared.module';
     AdministratorModule,
     FlexLayoutModule,
     HttpClientModule,
-    SharedModule,
+    SharedModule, 
+    ReactiveFormsModule, 
+    FormsModule,
+    UserModule
   ],
   entryComponents: [HomeComponent, SimpleDialogComponent],
   exports: [HomeComponent],
