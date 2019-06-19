@@ -1,0 +1,10 @@
+<mat-nav-list>
+    <div *ngFor="let g of menu">
+        <h3 *ngIf="g.header!=''" matSubheader>{{ g.header }}</h3>
+        <a *ngFor="let i of g.items" mat-list-item             
+            routerLinkActive="active-link" [routerLink]="[i.url]">
+            <mat-icon matListIcon> {{ i.icon }} </mat-icon>
+            {{ i.text }}
+        </a>
+    </div>
+</mat-nav-list>

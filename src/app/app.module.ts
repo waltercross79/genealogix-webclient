@@ -17,6 +17,7 @@ import { SharedModule } from './shared/shared.module';
 import { LoginComponent } from './login/login.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { UserModule } from './user/user.module';
+import { SideNavService } from './shared/menu/sidenav.service';
 
 @NgModule({
   declarations: [
@@ -37,11 +38,11 @@ import { UserModule } from './user/user.module';
     SharedModule, 
     ReactiveFormsModule, 
     FormsModule,
-    UserModule
+    UserModule,    
   ],
   entryComponents: [HomeComponent, SimpleDialogComponent],
   exports: [HomeComponent],
   bootstrap: [AppComponent],
-  providers: [UiService, DataService]
+  providers: [UiService, DataService, SideNavService]
 })
 export class AppModule { }

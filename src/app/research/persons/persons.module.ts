@@ -8,9 +8,10 @@ import { MatButtonModule, MatToolbarModule, MatIconModule, MatListModule, MatInp
 import { MaterialModule } from 'src/app/material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
-  declarations: [FiltersComponent, SearchComponent],
+  declarations: [FiltersComponent, SearchComponent, HomeComponent],
   imports: [
     CommonModule,
     PersonsRoutingModule,

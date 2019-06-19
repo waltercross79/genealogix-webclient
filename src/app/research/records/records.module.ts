@@ -8,7 +8,6 @@ import { AddComponent } from './add/add.component';
 import { ViewerComponent } from './viewer/viewer.component';
 import { DetailComponent } from './detail/detail.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { SidenavComponent } from './sidenav.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule, MatToolbarModule, MatIconModule, MatListModule, 
@@ -30,7 +29,7 @@ import { ConnectPersonsDialogComponent } from './connect-persons/connect-persons
 @NgModule({
   declarations: [HomeComponent, FiltersComponent, SearchComponent, 
     EditComponent, AddComponent, ViewerComponent, DetailComponent, 
-    DashboardComponent, SidenavComponent, RecordTypePipe, PersonRolePipe, ConnectPersonsComponent, PersonsComponent, ConnectPersonsDialogComponent],
+    DashboardComponent, RecordTypePipe, PersonRolePipe, ConnectPersonsComponent, PersonsComponent, ConnectPersonsDialogComponent],
   imports: [
     RecordsRoutingModule, ReactiveFormsModule, CommonModule,
     MatButtonModule, MatToolbarModule, MatIconModule, MatListModule, MaterialModule,
