@@ -1,0 +1,98 @@
+
+
+<div fxLayout="column">
+  <h2 class="mat-h2">Add New Person</h2>
+  <div>
+    <form [formGroup]="editor" (ngSubmit)="submit()">
+      <div fxLayout="row">
+        <div fxLayoutAlign="start center" fxFlex="1 1 20%">
+          First Name:
+        </div>
+        <div fxFlex>
+          <mat-form-field appearance="outline">
+            <mat-label>First Name</mat-label>
+            <input type="text" matInput formControlName="firstName" required>
+            <mat-error></mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div fxLayout="row">
+        <div fxLayoutAlign="start center" fxFlex="1 1 20%">
+          Last Name:
+        </div>
+        <div fxFlex>
+          <mat-form-field appearance="outline">
+            <mat-label>Last Name</mat-label>
+            <input type="text" matInput formControlName="lastName" required>
+            <mat-error></mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div fxLayout="row">
+        <div fxLayoutAlign="start center" fxFlex="1 1 20%">
+          Middle Name:
+        </div>
+        <div fxFlex>
+          <mat-form-field appearance="outline">
+            <mat-label>Middle Name</mat-label>
+            <input type="text" matInput formControlName="middleName" required>
+            <mat-error></mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div fxLayout="row">
+        <div fxLayoutAlign="start center" fxFlex="1 1 20%">
+          Gender:
+        </div>
+        <div fxFlex>
+          <mat-form-field appearance="outline">
+            <mat-label>Gender</mat-label>
+              <mat-select formControlName="gender">                
+                <mat-option value="F">Female</mat-option>
+                <mat-option value="M">Male</mat-option>
+              </mat-select>
+            <mat-error></mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div fxLayout="row">
+        <div fxLayoutAlign="start center" fxFlex="1 1 20%">
+          Date of Birth:
+        </div>
+        <div fxFlex>
+          <mat-form-field appearance="outline">
+            <mat-label>Date of Birth</mat-label>
+            <input matInput [matDatepicker]="dobDatePicker" formControlName="dob">
+            <mat-datepicker-toggle matSuffix [for]="dobDatePicker"></mat-datepicker-toggle>
+            <mat-datepicker #dobDatePicker ></mat-datepicker>
+            <mat-error></mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div fxLayout="row">
+        <div fxLayoutAlign="start center" fxFlex="1 1 20%">
+          Date of Death:
+        </div>
+        <div fxFlex>
+          <mat-form-field appearance="outline">
+            <mat-label>Date of Death</mat-label>
+            <input matInput [matDatepicker]="dodDatePicker" formControlName="dod">
+            <mat-datepicker-toggle matSuffix [for]="dodDatePicker"></mat-datepicker-toggle>
+            <mat-datepicker #dodDatePicker ></mat-datepicker>
+            <mat-error></mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div fxLayout="row" fxLayoutGap="10px">
+        <button type="button" mat-button (click)="cancel()">Cancel</button>
+        <button mat-raised-button color="accent" [disabled]="!editor.valid">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>

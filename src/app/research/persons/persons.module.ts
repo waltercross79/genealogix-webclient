@@ -9,9 +9,10 @@ import { MaterialModule } from 'src/app/material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
+import { AddComponent } from './add/add.component';
 
 @NgModule({
-  declarations: [FiltersComponent, SearchComponent, HomeComponent],
+  declarations: [FiltersComponent, SearchComponent, HomeComponent, AddComponent],
   imports: [
     CommonModule,
     PersonsRoutingModule,
