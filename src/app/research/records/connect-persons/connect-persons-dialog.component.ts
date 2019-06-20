@@ -1,6 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { ConnectPersonsComponent } from './connect-persons.component';
 import { PersonInRecord, Record } from '../services/models';
 
 @Component({
@@ -13,10 +12,9 @@ import { PersonInRecord, Record } from '../services/models';
       <mat-dialog-actions>
         <span class="flex-spacer"></span>
         <button mat-button mat-dialog-close>Close</button>   
-        <button
-            mat-button
-            mat-button-raised
-            color="primary"
+        <button [disabled]="!valid"
+            mat-raised-button
+            color="accent"
             [mat-dialog-close]="pir"
             cdkFocusInitial>
             Submit
@@ -28,6 +26,7 @@ import { PersonInRecord, Record } from '../services/models';
 export class ConnectPersonsDialogComponent {
 
   pir: PersonInRecord;
+  valid: boolean = false;
 
   constructor(
     public dialogRef: MatDialogRef<ConnectPersonsDialogComponent>,
@@ -37,7 +36,8 @@ export class ConnectPersonsDialogComponent {
     this.dialogRef.close();
   }
 
-  onPersonConnected(personInRecord: PersonInRecord){
-    this.pir = personInRecord;
+  onPersonConnected(data: { personInRecord: PersonInRecord, isValid: boolean }){
+    this.pir = data.personInRecord;
+    this.valid = data.isValid;
   }
 }

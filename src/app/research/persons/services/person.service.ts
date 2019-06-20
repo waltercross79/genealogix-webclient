@@ -29,4 +29,13 @@ export class PersonService {
       },
     ]));
   }
+
+  create(person: Person): Observable<Person> {
+    return new Observable<Person>(observer => { 
+      observer.next({
+      id: 4, firstName: 'New', lastName: 'Person', 
+      dateOfBirth: new Date(2000, 1, 1), dateOfDeath: null, 
+      middleName: null, gender: 'M'});
+    });
+  }
 }

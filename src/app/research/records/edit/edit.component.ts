@@ -7,6 +7,7 @@ import { UiService } from 'src/app/common/ui.service';
 import { MatDialog } from '@angular/material';
 import { ConnectPersonsComponent } from '../connect-persons/connect-persons.component';
 import { ConnectPersonsDialogComponent } from '../connect-persons/connect-persons-dialog.component';
+import { PersonService } from '../../persons/services/person.service';
 
 @Component({
   selector: 'app-edit',
@@ -31,7 +32,8 @@ export class EditComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     private uiService: UiService,
-    public dialog: MatDialog) { }
+    public dialog: MatDialog,
+    private personService: PersonService) { }
 
   ngOnInit() {
     // get record from resolve guard result
@@ -110,8 +112,24 @@ export class EditComponent implements OnInit {
       .subscribe(pir => {
         if(pir) {
           // Add PersonInRecord to the current record instance; mark the form 'dirty'.
-          this.record.persons.push(pir);
-          this.people.setData(this.record.persons);
+          // if pir.id == null, must create person first and get ID.
+          if(!pir.id) {
+            this.personService.create({ id: 0, 
+              firstName: pir.firstName, 
+              lastName: pir.lastName, 
+              middleName: null,
+              dateOfBirth: pir.dob,
+              dateOfDeath: null,
+              gender: null})
+              .subscribe(p => {
+                pir.id = p.id;
+                this.record.persons.push(pir);
+                this.people.setData(this.record.persons);
+            });          
+          } else {
+            this.record.persons.push(pir);
+            this.people.setData(this.record.persons);
+          }
         }
       });
   }

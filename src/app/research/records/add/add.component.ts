@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { ConnectPersonsDialogComponent } from '../connect-persons/connect-persons-dialog.component';
 import { MatDialog } from '@angular/material';
 import { RecordsService } from '../services/records.service';
+import { PersonService } from '../../persons/services/person.service';
 
 @Component({
   selector: 'app-add',
@@ -32,7 +33,7 @@ export class AddComponent implements OnInit {
 
   constructor(private uiService: UiService, private router: Router,
     private fb: FormBuilder, public dialog: MatDialog, 
-    private recordsService: RecordsService) { 
+    private recordsService: RecordsService, private personService: PersonService) { 
     this.record = new RegistryRecord();
   }
 
@@ -75,9 +76,23 @@ export class AddComponent implements OnInit {
       }).afterClosed()
         .subscribe(pir => {
           if(pir) {
-            // Add PersonInRecord to the current record instance; mark the form 'dirty'.
+            if(!pir.id) {
+            this.personService.create({ id: 0, 
+              firstName: pir.firstName, 
+              lastName: pir.lastName, 
+              middleName: null,
+              dateOfBirth: pir.dob,
+              dateOfDeath: null,
+              gender: null})
+              .subscribe(p => {
+                pir.id = p.id;
+                this.record.persons.push(pir);
+                this.persons.setData(this.record.persons);
+            });          
+          } else {
             this.record.persons.push(pir);
             this.persons.setData(this.record.persons);
+          }
           }
         });
     } else {

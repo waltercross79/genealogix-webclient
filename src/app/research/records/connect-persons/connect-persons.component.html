@@ -49,6 +49,9 @@
             </mat-form-field>          
           </div>
         </div>
+        <div fxLayout="row" *ngIf="mustSaveNewPerson">
+          <span class="warning">New person will be created when submitted!</span>
+        </div>
     </form>
     </div>
     <div fxLayout="row" class="divider-div" *ngIf="mode=='edit'">

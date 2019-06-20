@@ -35,12 +35,14 @@ export class ConnectPersonsComponent implements OnInit {
   @Input() record: Record;
   connectedPerson: FormGroup;
   personRoles: PersonRole[] = [];
-  @Output() connected: EventEmitter<PersonInRecord> = new EventEmitter<PersonInRecord>();
+  @Output() connected: EventEmitter<{personInRecord: PersonInRecord, isValid: boolean}> = 
+    new EventEmitter<{personInRecord: PersonInRecord, isValid: boolean}>();
   
   id: number;  
   mode: string = 'edit'; // 'edit' for manual edits, 'search' for person search
 
   personInRecord: PersonInRecord = new PersonInRecord();
+  mustSaveNewPerson: boolean = false;
 
   private personRoleControl: FormControl = new FormControl();
   private firstNameControl: FormControl = new FormControl();
@@ -65,7 +67,28 @@ export class ConnectPersonsComponent implements OnInit {
 
     
     this.connectedPerson.valueChanges.subscribe(val => {
-      this.updatePersonInRecord();
+      this.updatePersonInRecord();         
+    });
+
+    this.firstNameControl.valueChanges.subscribe(val => {
+      if(val != this.personInRecord.firstName) {
+        this.personInRecord.id = null;
+        this.mustSaveNewPerson = true;   
+      }
+    });
+
+    this.lastNameControl.valueChanges.subscribe(val => {
+      if(val != this.personInRecord.lastName) {
+        this.personInRecord.id = null;
+        this.mustSaveNewPerson = true;   
+      }
+    });
+
+    this.dobControl.valueChanges.subscribe(val => {
+      if(val != this.personInRecord.dob) {
+        this.personInRecord.id = null;
+        this.mustSaveNewPerson = true;   
+      }
     });
   }
 
@@ -81,7 +104,7 @@ export class ConnectPersonsComponent implements OnInit {
     this.personInRecord.dob = this.dobControl.value;
     this.personInRecord.role = this.personRoleControl.value;  
     
-    this.connected.emit(this.personInRecord);
+    this.connected.emit({ personInRecord: this.personInRecord, isValid: this.connectedPerson.valid});
   }
 
   navigateToEditor() {
@@ -100,6 +123,9 @@ export class ConnectPersonsComponent implements OnInit {
     this.mode = 'edit';
 
     this.updatePersonInRecord();
+
+    // Hide button to Create new person
+    this.mustSaveNewPerson = p.id == null;    
   }
 
   showSearch() {
