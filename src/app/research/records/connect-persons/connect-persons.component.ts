@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Inject, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Inject, EventEmitter, Output } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { PersonRole, Record, PersonInRecord } from '../services/models';
 import { Router, ActivatedRoute, NavigationStart } from '@angular/router';
@@ -35,10 +35,12 @@ export class ConnectPersonsComponent implements OnInit {
   @Input() record: Record;
   connectedPerson: FormGroup;
   personRoles: PersonRole[] = [];
-  connected: EventEmitter<PersonInRecord> = new EventEmitter<PersonInRecord>();
+  @Output() connected: EventEmitter<PersonInRecord> = new EventEmitter<PersonInRecord>();
   
   id: number;  
   mode: string = 'edit'; // 'edit' for manual edits, 'search' for person search
+
+  personInRecord: PersonInRecord = new PersonInRecord();
 
   private personRoleControl: FormControl = new FormControl();
   private firstNameControl: FormControl = new FormControl();
@@ -60,6 +62,11 @@ export class ConnectPersonsComponent implements OnInit {
       "dob": this.dobControl,
       "id": this.idControl
     });    
+
+    
+    this.connectedPerson.valueChanges.subscribe(val => {
+      this.updatePersonInRecord();
+    });
   }
 
   getRecordPersonSearch() {
@@ -67,15 +74,14 @@ export class ConnectPersonsComponent implements OnInit {
     this.mode = 'search';
   }
 
-  submit() {
-    var pir = new PersonInRecord();
-    pir.id = this.idControl.value;
-    pir.firstName = this.firstNameControl.value;
-    pir.lastName = this.lastNameControl.value;
-    pir.dob = this.dobControl.value;
-    pir.role = this.personRoleControl.value;
-
-    this.connected.emit(pir);
+  updatePersonInRecord() {    
+    this.personInRecord.id = this.idControl.value;
+    this.personInRecord.firstName = this.firstNameControl.value;
+    this.personInRecord.lastName = this.lastNameControl.value;
+    this.personInRecord.dob = this.dobControl.value;
+    this.personInRecord.role = this.personRoleControl.value;  
+    
+    this.connected.emit(this.personInRecord);
   }
 
   navigateToEditor() {
@@ -92,6 +98,8 @@ export class ConnectPersonsComponent implements OnInit {
     this.dobControl.setValue(p.dateOfBirth); 
     
     this.mode = 'edit';
+
+    this.updatePersonInRecord();
   }
 
   showSearch() {

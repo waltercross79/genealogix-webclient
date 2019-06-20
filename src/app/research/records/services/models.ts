@@ -21,7 +21,7 @@ export interface Record {
 }
 
 export class RegistryRecord implements Record {
-    constructor(recordDate: Date, recordType: RecordType, id?: number, 
+    constructor(recordDate?: Date, recordType?: RecordType, id?: number, 
         number?: string, street?: string, town?: string, country?: string,
         folio?: string, registry?: string, persons?: PersonInRecord[]) {
         this.id = id ? id : 0;

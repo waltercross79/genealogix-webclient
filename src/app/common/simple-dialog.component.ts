@@ -8,7 +8,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 })
 export class SimpleDialogComponent {
   constructor(
-    // public dialogRef: MatDialogRef<SimpleDialogComponent, Boolean>,
-    // @Inject(MAT_DIALOG_DATA) public data: any
+    public dialogRef: MatDialogRef<SimpleDialogComponent, Boolean>,
+    @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
 }

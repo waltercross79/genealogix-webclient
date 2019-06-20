@@ -38,4 +38,8 @@ export class PersonsComponent implements OnInit {
   onAddPersonClicked() {
     this.addPerson.emit();
   }
+
+  public setData(data: PersonInRecord[]) {
+    this.dataSource.data = data ? data : [];
+  }
 }

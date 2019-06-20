@@ -82,4 +82,29 @@ export class RecordsService {
     dateOfBirth: Date, person_id: number) : Observable<{ isSuccess: boolean, message: string}> {
       return new Observable(observer => observer.next());
   }
+
+  create(record: Record) {
+    return new Observable<Record>(observer => {
+      observer.next({id: 2,
+        recordDate: new Date(2001, 5, 31), 
+        recordType: RecordType.Birth, 
+        street: 'Wall St',
+        number: '124',
+        town: 'Springville',
+        country: 'US',
+        folio: '211', 
+        registry: 'Book 2',
+        persons: [
+          { id: 1, firstName: 'Lada', lastName: 'Pada', role: PersonRole.Newborn, dob: new Date(1979, 9, 26) },
+          { id: 2, firstName: 'Lada', lastName: 'Pada, Sr.', role: PersonRole.Father, dob: new Date(1955, 2, 18) },
+          { id: 3, firstName: 'Zdenka', lastName: 'Padova', role: PersonRole.Mother, dob: new Date(1955, 2, 18) }
+        ]  
+      });
+    }).pipe(
+      catchError(err => {
+        console.log(err);
+        return throwError(err);
+      })
+    );  
+  }
 }

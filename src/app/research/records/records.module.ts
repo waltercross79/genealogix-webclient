@@ -13,7 +13,7 @@ import { CommonModule } from '@angular/common';
 import { MatButtonModule, MatToolbarModule, MatIconModule, MatListModule, 
   MatInputModule, MatCheckboxModule, MatFormFieldModule, MatTableModule, 
   MatPaginatorModule, MatSortModule, MatRadioModule, MatDatepickerModule, MatNativeDateModule, 
-  MatOptionModule, MatSelectModule, MatDialogModule
+  MatOptionModule, MatSelectModule, MatDialogModule, MatSidenavModule, MatStepperModule
    } from '@angular/material';
 import { MaterialModule } from 'src/app/material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -36,7 +36,7 @@ import { ConnectPersonsDialogComponent } from './connect-persons/connect-persons
     MatInputModule, MatCheckboxModule, MatFormFieldModule, FlexLayoutModule, MatTableModule,
     MatPaginatorModule, MatSortModule, MatRadioModule, MatDatepickerModule, MatNativeDateModule,
     ImageViewerModule, PersonsModule, MatOptionModule, MatSelectModule, SharedModule,
-    MatDialogModule],
+    MatDialogModule, MatSidenavModule, MatStepperModule],
   entryComponents: [HomeComponent, ConnectPersonsDialogComponent],  
 })
 export class RecordsModule { }

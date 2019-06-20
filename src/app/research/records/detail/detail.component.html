@@ -48,13 +48,21 @@
       <div fxFlex="60" fxLayoutAlign="start" class="record-detail-text">{{ record.registry }}</div>
     </div>
     <div *ngIf="record.persons.length > 0" fxLayout="row" fxLayoutGap="10px">
-        <div fxFlex="40" fxLayoutAlign="end" class="record-detail-label">People:</div>
-        <div fxFlex="60" fxLayoutAlign="start" class="record-detail-text" fxLayout="column">
-          <div *ngFor="let p of record.persons">
-            {{ p.firstName }} {{ p.lastName }} ({{ p.role | personRole }})
-          </div>
+      <div fxFlex="40" fxLayoutAlign="end" class="record-detail-label">People:</div>
+      <div fxFlex="60" fxLayoutAlign="start" class="record-detail-text" fxLayout="column">
+        <div *ngFor="let p of record.persons">
+          {{ p.firstName }} {{ p.lastName }} ({{ p.role | personRole }})
         </div>
       </div>
+    </div>
+    <div fxLayout="row" fxLayoutGap="10px">
+      <div fxFlex="40" fxLayoutAlign="end" class="record-detail-label">
+        <a mat-raised-button routerLink="/research/records/search">Close</a>
+      </div>        
+      <div fxFlex="60" fxLayoutAlign="start" fxLayoutGap="10px">        
+        <a mat-raised-button color="accent" routerLink="/research/records/edit/{{ record.id }}">Edit</a>        
+      </div>
+    </div>
   </div>
 
 </div>

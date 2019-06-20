@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Record, RegistryRecord, PersonInRecord } from '../services/models';
 import { RecordsService } from '../services/records.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -24,6 +24,7 @@ export class EditComponent implements OnInit {
   recordTypeControl: FormControl = new FormControl('', [
     Validators.required
   ]);
+  @ViewChild('people', { static: true} ) people;
 
   constructor(private recordsService: RecordsService,
     private route: ActivatedRoute,
@@ -110,6 +111,7 @@ export class EditComponent implements OnInit {
         if(pir) {
           // Add PersonInRecord to the current record instance; mark the form 'dirty'.
           this.record.persons.push(pir);
+          this.people.setData(this.record.persons);
         }
       });
   }

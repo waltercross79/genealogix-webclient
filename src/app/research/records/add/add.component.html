@@ -1,3 +1,102 @@
-<p>
-  add works!
-</p>
+<div fxLayout="column">
+  <h2 class="mat-h2">Add New Record</h2>
+  <div>
+    <form [formGroup]="editor" (ngSubmit)="submit()">
+      <mat-horizontal-stepper formArrayName="formArray">
+        <mat-step formGroupName="0" [stepControl]='formArray?.get([0])'>
+          <ng-template matStepLabel>Import file from disc</ng-template>
+          <input type="file" #file style="display: none;" (change)="onFileSelected()" />  
+          <button mat-raised-button type="button" (click)="fileOpenDialog()">Browse...</button>     
+          <app-image-viewer *ngIf="hasImage"
+            [images]="images"
+            [idContainer]="'idOnHTML'"
+            [loadOnInit]="true"
+            [showPDFOnlyOption]="false"
+            [primaryColor]="'#2c2c2c'" 
+            [buttonsColor]="'#e8f7fe'" 
+            [buttonsHover]="'#fff6af'">
+          </app-image-viewer>
+        </mat-step>
+        <mat-step  formGroupName="1" [stepControl]='formArray?.get([1])'>
+          <ng-template matStepLabel>Enter record details</ng-template>
+          <div fxLayout="row wrap">
+            <div fxLayoutAlign="start center" fxFlex="1 1 20%">Record Date:</div>
+            <div>
+              <mat-form-field appearance="outline">
+                <mat-label>Date:</mat-label>            
+                <input matInput [matDatepicker]="recordDatePicker" formControlName="recordDate" required>
+                <mat-datepicker-toggle matSuffix [for]="recordDatePicker"></mat-datepicker-toggle>
+                <mat-datepicker #recordDatePicker ></mat-datepicker>
+                <mat-error></mat-error>
+              </mat-form-field>          
+            </div>
+          </div>
+      
+          <div fxLayout="row wrap">
+            <div fxLayoutAlign="start center" fxFlex="1 1 20%">Record Type:</div>
+            <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px" 
+              style="margin-bottom: 20px; padding: 20px; border: solid rgba(0,0,0,.12) 1px; border-radius: 5px;">
+                <mat-radio-group aria-label="Select record type" formControlName="recordType">
+                  <mat-radio-button value="1" style="margin-right: 20px;">Birth</mat-radio-button>
+                  <mat-radio-button value="2" style="margin-right: 20px;">Death</mat-radio-button>
+                  <mat-radio-button value="3">Marriage</mat-radio-button>
+                </mat-radio-group>
+            </div>
+          </div>
+      
+          <div fxLayout="row" fxLayout.xs="column">
+            <div fxLayoutAlign="start center" fxFlex="1 1 20%">Location:</div>
+            <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="10px">
+              <div fxLayout="row" fxLayoutGap="10px">
+                <mat-form-field appearance="outline">
+                  <mat-label>Street:</mat-label>
+                  <input matInput type="text" formControlName="street" />
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                  <mat-label>Number:</mat-label>
+                  <input matInput type="text" formControlName="number" />
+                </mat-form-field>
+              </div>
+              <div fxLayout="row" fxLayoutGap="10px">
+                <mat-form-field appearance="outline">
+                  <mat-label>Town:</mat-label>
+                  <input matInput type="text" formControlName="town" />
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                  <mat-label>Country:</mat-label>
+                  <input matInput type="text" formControlName="country" />
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+      
+          <div fxLayout="row wrap">
+            <div fxLayoutAlign="start center" fxFlex="1 1 20%">Registrar:</div>
+            <div fxLayout="row wrap" fxLayoutGap="10px">
+              <mat-form-field appearance="outline">
+                <mat-label>Registry:</mat-label>
+                <input matInput type="text" formControlName="registry" />
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Folio:</mat-label>
+                <input matInput type="text" formControlName="folio" />
+              </mat-form-field>      
+            </div>     
+          </div>
+
+        </mat-step>
+        <mat-step>
+          <ng-template matStepLabel>Connect people to record</ng-template>
+          <div>
+            <app-persons #persons [record]="record" (addPerson)="showConnectPerson($event)"></app-persons>
+          </div>
+
+        </mat-step>
+      </mat-horizontal-stepper>
+      <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="10px" class="margin-top20">      
+        <button type="button" mat-raised-button (click)="cancel()">Cancel</button>
+        <button mat-raised-button color="accent" [disabled]="!recordDetailsForm.valid || !hasImage ">Submit</button>
+      </div>
+    </form>    
+  </div>
+</div>  
