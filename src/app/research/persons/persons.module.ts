@@ -10,16 +10,18 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import { AddComponent } from './add/add.component';
+import { DetailComponent } from './detail/detail.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
-  declarations: [FiltersComponent, SearchComponent, HomeComponent, AddComponent],
+  declarations: [FiltersComponent, SearchComponent, HomeComponent, AddComponent, DetailComponent],
   imports: [
     CommonModule,
     PersonsRoutingModule,
     MatButtonModule, MatToolbarModule, MatIconModule, MatListModule, MaterialModule,
     MatInputModule, MatCheckboxModule, MatFormFieldModule, FlexLayoutModule, MatTableModule,
     MatPaginatorModule, MatSortModule, MatRadioModule, MatDatepickerModule, MatNativeDateModule,
-    ReactiveFormsModule, MatSelectModule, MatOptionModule
+    ReactiveFormsModule, MatSelectModule, MatOptionModule, SharedModule
   ],
   exports: [SearchComponent]
 })

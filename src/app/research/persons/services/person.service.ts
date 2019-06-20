@@ -38,4 +38,13 @@ export class PersonService {
       middleName: null, gender: 'M'});
     });
   }
+
+  get(id: number) : Observable<Person> {
+    return new Observable<Person>(observer => { 
+      observer.next({
+      id: id, firstName: 'Sought', lastName: 'Person', 
+      dateOfBirth: new Date(2000, 1, 1), dateOfDeath: new Date(2018, 12, 31), 
+      middleName: 'Middle', gender: 'M'});
+    });
+  }
 }
