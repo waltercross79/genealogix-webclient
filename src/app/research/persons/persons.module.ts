@@ -12,9 +12,10 @@ import { HomeComponent } from './home/home.component';
 import { AddComponent } from './add/add.component';
 import { DetailComponent } from './detail/detail.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { EditComponent } from './edit/edit.component';
 
 @NgModule({
-  declarations: [FiltersComponent, SearchComponent, HomeComponent, AddComponent, DetailComponent],
+  declarations: [FiltersComponent, SearchComponent, HomeComponent, AddComponent, DetailComponent, EditComponent],
   imports: [
     CommonModule,
     PersonsRoutingModule,

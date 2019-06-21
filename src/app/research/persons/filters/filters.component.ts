@@ -27,6 +27,7 @@ export class FiltersComponent implements OnInit {
 
     if(lastSearch) {
       this.filters = lastSearch;
+      this.setFilters();
     } else {
       this.filters = this.fb.group({
         "dobFrom": new FormControl(),
@@ -47,7 +48,12 @@ export class FiltersComponent implements OnInit {
   }
 
   submit() {
-    // raise event
+    this.dataService.data[PERSON_FILTERS_ITEM] = this.filters;
+    
+    this.setFilters();
+  }
+
+  setFilters() {
     this.selected.emit({
       dobFrom: this.filters.value.dobFrom,
       dobTo: this.filters.value.dobTo,

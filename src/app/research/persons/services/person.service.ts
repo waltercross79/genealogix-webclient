@@ -47,4 +47,12 @@ export class PersonService {
       middleName: 'Middle', gender: 'M'});
     });
   }
+
+  save(person: Person) : Observable<Person> {
+    let result = new Observable<Person>(observer => {      
+      observer.next(person);
+    });
+
+    return result;
+  }
 }
