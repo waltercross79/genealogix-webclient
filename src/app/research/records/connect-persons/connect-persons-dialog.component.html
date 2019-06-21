@@ -1,0 +1,40 @@
+<h2 mat-dialog-title>Add Person to Record</h2>
+<mat-dialog-content>
+<div>
+    <div fxLayout="row" fxLayout.xs="column">
+        <div fxFlex="20" fxLayoutAlign="start center">
+            Person Role:
+        </div>
+        <div [formGroup]="editor">
+            <mat-form-field>
+            <mat-select required formControlName="role">
+                <mat-option *ngFor="let o of personRoles" [value]="o">{{ o | personRole }}</mat-option>
+            </mat-select>
+            </mat-form-field>
+        </div>        
+    </div>    
+</div>
+<div *ngIf="personRoleControl.valid">
+    <app-add-person *ngIf="mode=='create'" [isInRecordContext]="true" (changed)="onPersonConnected($event)" (cancelled)="cancel($event)"></app-add-person>    
+    <app-person-search *ngIf="mode=='find' && person==null" [isInRecordContext]="true" (selected)="onPersonConnected($event)" (cancelled)="cancel($event)"></app-person-search>
+    <div *ngIf="mode=='find' && person!=null">
+        <div>
+            Selected person: {{ person.lastName }}, {{ person.firstName }} ({{ person.dateOfBirth | date }}<span *ngIf="person.dateOfDeath != null" style="margin-left: 10px;"> - </span><span *ngIf="person.dateOfDeath != null" style="margin-left: 10px;">{{ person.dateOfDeath | date }}</span>)
+        </div>
+        <div class="margin-top20">
+            <button type="button" mat-button-flat (click)="resetSearch()">Reset</button>
+        </div>
+    </div>
+</div>
+</mat-dialog-content>
+<mat-dialog-actions>
+<span class="flex-spacer"></span>
+<button mat-button mat-dialog-close>Cancel</button>   
+<button [disabled]="!valid"
+    mat-raised-button
+    color="accent"
+    [mat-dialog-close]="pir"
+    cdkFocusInitial>
+    Add
+    </button>         
+</mat-dialog-actions>  

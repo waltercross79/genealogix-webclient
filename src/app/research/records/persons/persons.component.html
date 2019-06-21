@@ -38,9 +38,12 @@
     <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
   </div>
 
-  <div fxLayout="row" fxLayoutAlign="start">
-    <button type="button" mat-button (click)="onAddPersonClicked()" aria-label="Click to connect a person to the record">
+  <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="10px">
+    <button type="button" mat-button (click)="onAddPersonClicked()" aria-label="Click to create new person listed in the record">
       <mat-icon color="accent">person_add</mat-icon>
+    </button>
+    <button type="button" mat-button (click)="onFindPersonClicked()" aria-label="Click to connect an existing person to the record">
+      <mat-icon color="accent">person_pin</mat-icon>
     </button>
   </div>
 </div>

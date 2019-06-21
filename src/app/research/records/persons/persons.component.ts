@@ -17,6 +17,7 @@ export class PersonsComponent implements OnInit {
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   columnsToDisplay: string[] = ["personRole", "firstName", "lastName", "dob", "actions"];
   @Output() addPerson: EventEmitter<any> = new EventEmitter<any>();
+  @Output() findPerson: EventEmitter<any> = new EventEmitter<any>();
 
   constructor() { }
 
@@ -37,6 +38,10 @@ export class PersonsComponent implements OnInit {
 
   onAddPersonClicked() {
     this.addPerson.emit();
+  }
+
+  onFindPersonClicked() {
+    this.findPerson.emit();
   }
 
   public setData(data: PersonInRecord[]) {

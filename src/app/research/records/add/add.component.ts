@@ -64,40 +64,10 @@ export class AddComponent implements OnInit {
       this.recordDetailsForm
       ])
     });
-  }
 
-  showConnectPerson() {
-    this.record.recordType = this.recordTypeControl.value;
-
-    if(this.record.recordType) {
-      this.dialog.open(ConnectPersonsDialogComponent, {
-        data: this.record,
-        width: '1000px'
-      }).afterClosed()
-        .subscribe(pir => {
-          if(pir) {
-            if(!pir.id) {
-            this.personService.create({ id: 0, 
-              firstName: pir.firstName, 
-              lastName: pir.lastName, 
-              middleName: null,
-              dateOfBirth: pir.dob,
-              dateOfDeath: null,
-              gender: null})
-              .subscribe(p => {
-                pir.id = p.id;
-                this.record.persons.push(pir);
-                this.persons.setData(this.record.persons);
-            });          
-          } else {
-            this.record.persons.push(pir);
-            this.persons.setData(this.record.persons);
-          }
-          }
-        });
-    } else {
-      this.uiService.showToast('Please select record type first.');
-    }
+    this.recordTypeControl.valueChanges.subscribe(val => {
+      this.record.recordType = val;
+    });
   }
 
   cancel() {
@@ -149,6 +119,28 @@ export class AddComponent implements OnInit {
     },
     error => {
       this.uiService.showToast(error);
+    });
+  }
+
+  showConnectPerson() {
+    this.doShowConnectPerson('create');
+  }
+
+  showCreatePerson() {
+    this.doShowConnectPerson('find');
+  }
+
+  private doShowConnectPerson(mode: string) {
+    let dialogRef = this.dialog.open(ConnectPersonsDialogComponent, {
+      data: { record: this.record, mode: mode },
+      width: '1000px'
+    });
+
+    dialogRef.afterClosed().subscribe(pir => {
+      if(pir) {
+        this.record.persons.push(pir);
+        this.persons.setData(this.record.persons);
+      }
     });
   }
 }

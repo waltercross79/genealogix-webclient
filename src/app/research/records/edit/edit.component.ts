@@ -5,7 +5,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { UiService } from 'src/app/common/ui.service';
 import { MatDialog } from '@angular/material';
-import { ConnectPersonsComponent } from '../connect-persons/connect-persons.component';
 import { ConnectPersonsDialogComponent } from '../connect-persons/connect-persons-dialog.component';
 import { PersonService } from '../../persons/services/person.service';
 
@@ -61,6 +60,10 @@ export class EditComponent implements OnInit {
       "folio": new FormControl(this.record.folio),
       "registry": new FormControl(this.record.registry)
     });
+
+    this.recordTypeControl.valueChanges.subscribe(val => {
+      this.record.recordType = val;
+    });
   }
 
   submit() {
@@ -105,32 +108,24 @@ export class EditComponent implements OnInit {
   }
 
   showConnectPerson() {
-    this.dialog.open(ConnectPersonsDialogComponent, {
-      data: this.record,
+    this.doShowConnectPerson('create');
+  }
+
+  showCreatePerson() {
+    this.doShowConnectPerson('find');
+  }
+
+  private doShowConnectPerson(mode: string) {
+    let dialogRef = this.dialog.open(ConnectPersonsDialogComponent, {
+      data: { record: this.record, mode: mode },
       width: '1000px'
-    }).afterClosed()
-      .subscribe(pir => {
-        if(pir) {
-          // Add PersonInRecord to the current record instance; mark the form 'dirty'.
-          // if pir.id == null, must create person first and get ID.
-          if(!pir.id) {
-            this.personService.create({ id: 0, 
-              firstName: pir.firstName, 
-              lastName: pir.lastName, 
-              middleName: null,
-              dateOfBirth: pir.dob,
-              dateOfDeath: null,
-              gender: null})
-              .subscribe(p => {
-                pir.id = p.id;
-                this.record.persons.push(pir);
-                this.people.setData(this.record.persons);
-            });          
-          } else {
-            this.record.persons.push(pir);
-            this.people.setData(this.record.persons);
-          }
-        }
-      });
+    });
+
+    dialogRef.afterClosed().subscribe(pir => {
+      if(pir) {
+        this.record.persons.push(pir);
+        this.people.setData(this.record.persons);
+      }
+    });
   }
 }

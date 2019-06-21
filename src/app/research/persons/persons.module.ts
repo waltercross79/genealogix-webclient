@@ -24,6 +24,6 @@ import { EditComponent } from './edit/edit.component';
     MatPaginatorModule, MatSortModule, MatRadioModule, MatDatepickerModule, MatNativeDateModule,
     ReactiveFormsModule, MatSelectModule, MatOptionModule, SharedModule
   ],
-  exports: [SearchComponent]
+  exports: [SearchComponent, AddComponent]
 })
 export class PersonsModule { }

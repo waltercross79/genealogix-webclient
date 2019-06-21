@@ -21,7 +21,6 @@ import { RecordTypePipe } from './services/record-type.pipe';
 import { ImageViewerModule } from 'ng2-image-viewer';
 import { PersonRolePipe } from './services/person-role.pipe';
 import { PersonsModule } from '../persons/persons.module';
-import { ConnectPersonsComponent } from './connect-persons/connect-persons.component';
 import { PersonsComponent } from './persons/persons.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ConnectPersonsDialogComponent } from './connect-persons/connect-persons-dialog.component';
@@ -29,7 +28,7 @@ import { ConnectPersonsDialogComponent } from './connect-persons/connect-persons
 @NgModule({
   declarations: [HomeComponent, FiltersComponent, SearchComponent, 
     EditComponent, AddComponent, ViewerComponent, DetailComponent, 
-    DashboardComponent, RecordTypePipe, PersonRolePipe, ConnectPersonsComponent, PersonsComponent, ConnectPersonsDialogComponent],
+    DashboardComponent, RecordTypePipe, PersonRolePipe, PersonsComponent, ConnectPersonsDialogComponent],
   imports: [
     RecordsRoutingModule, ReactiveFormsModule, CommonModule,
     MatButtonModule, MatToolbarModule, MatIconModule, MatListModule, MaterialModule,
