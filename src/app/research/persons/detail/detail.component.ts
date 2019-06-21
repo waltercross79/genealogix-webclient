@@ -4,39 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-detail',
-  template: `
-    <h2 class="mat-h2">Person Details</h2>
-    <div fxLayout="column" class="person-detail-container">
-      
-      <div fxLayout="row wrap" fxLayout.xs="column">
-        <div fxFlex="20">
-          Name:
-        </div>
-        <div class="person-detail-text">
-          {{ person.lastName }}, {{ person.firstName }} {{ person.middleName }} 
-        </div>
-      </div>
-      <div fxLayout="row wrap" fxLayout.xs="column">
-        <div fxFlex="20">
-          Gender:
-        </div>
-        <div class="person-detail-text">
-          {{ person.gender | gender }}
-        </div>
-      </div>
-      <div fxLayout="row wrap" fxLayout.xs="column">
-        <div fxFlex="20">
-          Dates:
-        </div>
-        <div class="person-detail-text">
-          {{ person.dateOfBirth | date }} <span *ngIf="person.dateOfDeath!=null"><span style="margin-left: 20px;"></span>-<span style="margin-right: 20px;"></span>{{ person.dateOfDeath | date }}</span>
-        </div>
-        <div>
-          
-        </div>
-      </div>
-    </div>
-  `,
+  templateUrl: './detail.component.html',  
   styles: [
   `.person-detail-container div {
     margin-bottom: 10px;    

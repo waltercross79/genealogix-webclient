@@ -39,13 +39,13 @@
           <button *ngIf="isInRecordContext==true" mat-button (click)="select(p.id)">
             <mat-icon>check_circle_outline</mat-icon>
           </button>
-          <button *ngIf="isInRecordContext==false" mat-button (click)="view(p.id)" aria-label="View Person">
+          <button *ngIf="isInRecordContext==false" mat-button routerLink="/research/persons/{{p.id}}" aria-label="View Person">
               <mat-icon>folder</mat-icon>
           </button>
           <a *ngIf="isInRecordContext==false" mat-button routerLink="/research/persons/edit/{{p.id}}" aria-label="Edit Person">
               <mat-icon>edit</mat-icon>
           </a>
-          <button *ngIf="isInRecordContext==false" mat-button (click)="delete(p.id)" aria-label="Delete Person">
+          <button *ngIf="isInRecordContext==false" mat-button (click)="delete(p)" aria-label="Delete Person">
               <mat-icon>delete</mat-icon>
           </button>
         </mat-cell>      

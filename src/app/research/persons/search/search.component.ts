@@ -43,4 +43,8 @@ export class SearchComponent implements OnInit {
   select(id: number) {
     this.selected.emit(this.dataSource.data.find(p => p.id == id));
   }
+
+  delete(person: Person) {
+    console.log(person);
+  }
 }
