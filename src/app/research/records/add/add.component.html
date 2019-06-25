@@ -24,7 +24,7 @@
             <div>
               <mat-form-field appearance="outline">
                 <mat-label>Date:</mat-label>            
-                <input matInput [matDatepicker]="recordDatePicker" formControlName="recordDate" required>
+                <input matInput [matDatepicker]="recordDatePicker" formControlName="recordDate" required autocomplete="off">
                 <mat-datepicker-toggle matSuffix [for]="recordDatePicker"></mat-datepicker-toggle>
                 <mat-datepicker #recordDatePicker ></mat-datepicker>
                 <mat-error></mat-error>
@@ -50,21 +50,21 @@
               <div fxLayout="row" fxLayoutGap="10px">
                 <mat-form-field appearance="outline">
                   <mat-label>Street:</mat-label>
-                  <input matInput type="text" formControlName="street" />
+                  <input matInput type="text" formControlName="street" autocomplete="off" />
                 </mat-form-field>
                 <mat-form-field appearance="outline">
                   <mat-label>Number:</mat-label>
-                  <input matInput type="text" formControlName="number" />
+                  <input matInput type="text" formControlName="number" autocomplete="off" />
                 </mat-form-field>
               </div>
               <div fxLayout="row" fxLayoutGap="10px">
                 <mat-form-field appearance="outline">
                   <mat-label>Town:</mat-label>
-                  <input matInput type="text" formControlName="town" />
+                  <input matInput type="text" formControlName="town" autocomplete="off" />
                 </mat-form-field>
                 <mat-form-field appearance="outline">
                   <mat-label>Country:</mat-label>
-                  <input matInput type="text" formControlName="country" />
+                  <input matInput type="text" formControlName="country" autocomplete="off" />
                 </mat-form-field>
               </div>
             </div>
@@ -75,11 +75,11 @@
             <div fxLayout="row wrap" fxLayoutGap="10px">
               <mat-form-field appearance="outline">
                 <mat-label>Registry:</mat-label>
-                <input matInput type="text" formControlName="registry" />
+                <input matInput type="text" formControlName="registry" autocomplete="off" />
               </mat-form-field>
               <mat-form-field appearance="outline">
                 <mat-label>Folio:</mat-label>
-                <input matInput type="text" formControlName="folio" />
+                <input matInput type="text" formControlName="folio" autocomplete="off" />
               </mat-form-field>      
             </div>     
           </div>
@@ -88,7 +88,7 @@
         <mat-step>
           <ng-template matStepLabel>Connect people to record</ng-template>
           <div>
-            <app-persons #people [record]="record" (addPerson)="showConnectPerson($event)" (findPerson)="showCreatePerson($event)"></app-persons>
+            <app-persons #persons [record]="record" (addPerson)="showConnectPerson($event)" (findPerson)="showCreatePerson($event)"></app-persons>
           </div>
 
         </mat-step>
