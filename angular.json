@@ -42,7 +42,11 @@
               "src/custom-theme.scss",
               "node_modules/ng2-image-viewer/imageviewer.scss"
             ],
-            "scripts": [],
+            "scripts": [
+              "node_modules/d3-dtree/dist/dTree.js",
+              "node_modules/lodash/lodash.js",
+              "node_modules/d3/build/d3.js"              
+            ],
             "es5BrowserSupport": true
           },
           "configurations": {

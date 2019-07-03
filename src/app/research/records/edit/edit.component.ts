@@ -115,6 +115,16 @@ export class EditComponent implements OnInit {
     this.doShowConnectPerson('find');
   }
 
+  removeConnectPerson(pir: PersonInRecord) {
+    if(pir) {
+      let index = this.record.persons.indexOf(pir);
+      if(index >= 0) {
+        this.record.persons.splice(index, 1);
+        this.people.setData(this.record.persons);
+      }
+    }
+  }
+
   private doShowConnectPerson(mode: string) {
     let dialogRef = this.dialog.open(ConnectPersonsDialogComponent, {
       data: { record: this.record, mode: mode },

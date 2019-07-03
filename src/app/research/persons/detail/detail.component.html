@@ -1,6 +1,8 @@
 <h2 class="mat-h2">Person Details</h2>
 <div fxLayout="row" fxLayout.xs="column">
-    <div fxFlex="75">This is where the viewer will be...</div>
+    <div fxFlex="75">
+        <app-tree-viewer [data]="person"></app-tree-viewer>
+    </div>
     <div fxFlex="25" fxLayout="column" class="person-detail-container">    
         <div fxLayout="row" fxLayoutGap="10px">
             <div fxFlex="40" fxLayoutAlign="end" class="person-detail-label">ID:</div>

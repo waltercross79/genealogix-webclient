@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Person } from '../services/models';
+import { Person, FullyLoadedPerson } from '../services/models';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -20,7 +20,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class DetailComponent implements OnInit {
 
-  person: Person;
+  person: FullyLoadedPerson;
 
   constructor(private activeRoute: ActivatedRoute) { }
 

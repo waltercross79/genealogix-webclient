@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, ViewChild, EventEmitter, Output } from '@angular/core';
 import { PersonInRecord, Record } from '../services/models';
 import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
+import { UiService } from 'src/app/common/ui.service';
 
 @Component({
   selector: 'app-persons',
@@ -18,8 +19,9 @@ export class PersonsComponent implements OnInit {
   columnsToDisplay: string[] = ["personRole", "firstName", "lastName", "dob", "actions"];
   @Output() addPerson: EventEmitter<any> = new EventEmitter<any>();
   @Output() findPerson: EventEmitter<any> = new EventEmitter<any>();
+  @Output() removePerson: EventEmitter<PersonInRecord> = new EventEmitter<PersonInRecord>();
 
-  constructor() { }
+  constructor(private uiService: UiService) { }
 
   ngOnInit() {
     this.dataSource = new MatTableDataSource<PersonInRecord>([]);
@@ -33,7 +35,14 @@ export class PersonsComponent implements OnInit {
   }
 
   remove(id) {
-    console.log("Delete from record - person ID:" + id);
+    // show dialog
+    this.uiService.showDialog("Confirm Removal", 
+      "Are you sure you want to remove this person from the record?",
+      "Yes", "No").subscribe(confirmed => {
+        if(confirmed) {
+          this.removePerson.emit(this.dataSource.data.find(pir => pir.id == id));
+        }
+      });
   }
 
   onAddPersonClicked() {

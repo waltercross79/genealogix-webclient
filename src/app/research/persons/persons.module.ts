@@ -13,9 +13,10 @@ import { AddComponent } from './add/add.component';
 import { DetailComponent } from './detail/detail.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { EditComponent } from './edit/edit.component';
+import { TreeViewerComponent } from './tree-viewer/tree-viewer.component';
 
 @NgModule({
-  declarations: [FiltersComponent, SearchComponent, HomeComponent, AddComponent, DetailComponent, EditComponent],
+  declarations: [FiltersComponent, SearchComponent, HomeComponent, AddComponent, DetailComponent, EditComponent,TreeViewerComponent],
   imports: [
     CommonModule,
     PersonsRoutingModule,
@@ -24,6 +25,6 @@ import { EditComponent } from './edit/edit.component';
     MatPaginatorModule, MatSortModule, MatRadioModule, MatDatepickerModule, MatNativeDateModule,
     ReactiveFormsModule, MatSelectModule, MatOptionModule, SharedModule
   ],
-  exports: [SearchComponent, AddComponent]
+  exports: [SearchComponent, AddComponent,TreeViewerComponent]
 })
 export class PersonsModule { }

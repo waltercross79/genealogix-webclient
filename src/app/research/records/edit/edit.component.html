@@ -68,7 +68,10 @@
       </div>
       
       <div>
-        <app-persons #people [record]="record" (addPerson)="showConnectPerson($event)" (findPerson)="showCreatePerson($event)"></app-persons>
+        <app-persons #people [record]="record" 
+          (addPerson)="showConnectPerson($event)" 
+          (findPerson)="showCreatePerson($event)"
+          (removePerson)="removeConnectPerson($event)"></app-persons>
       </div>
 
       <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="10px" class="margin-top20">      

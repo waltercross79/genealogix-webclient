@@ -21,10 +21,10 @@
       <ng-container matColumnDef="actions">
           <mat-header-cell *matHeaderCellDef mat-sort-header>Actions</mat-header-cell>
           <mat-cell *matCellDef="let p">
-              <button mat-button (click)="view(p.id)" aria-label="View Person In Record Details">
+              <a mat-button [routerLink]="['/', 'research', 'persons', p.id]" aria-label="View Person In Record Details">
                   <mat-icon>person</mat-icon>
-              </button>              
-              <button mat-button (click)="remove(p.id)" aria-label="Remove Person from Record">
+              </a>              
+              <button mat-button (click)="remove(p.id)" type="button" aria-label="Remove Person from Record">
                   <mat-icon>delete</mat-icon>
               </button>
           </mat-cell>

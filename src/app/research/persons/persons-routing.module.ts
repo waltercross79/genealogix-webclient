@@ -6,6 +6,7 @@ import { AddComponent } from './add/add.component';
 import { DetailComponent } from './detail/detail.component';
 import { PersonResolver } from './services/person-resolve.guard';
 import { EditComponent } from './edit/edit.component';
+import { PersonDeepResolver } from './services/person-resolve-deep.guard';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -14,7 +15,7 @@ const routes: Routes = [
   { path: 'edit', children: [
     { path: ':id', component: EditComponent, resolve:{ person: PersonResolver } }
   ]},
-  { path: ':id', component: DetailComponent, resolve:{ person: PersonResolver } }
+  { path: ':id', component: DetailComponent, resolve:{ person: PersonDeepResolver } }
 ];
 
 @NgModule({

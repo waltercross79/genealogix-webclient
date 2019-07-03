@@ -7,3 +7,13 @@ export interface Person {
     dateOfDeath: Date,
     id: number
 }
+
+export interface FullyLoadedPerson extends Person {
+    marriages: Marriage[]    
+    siblings: FullyLoadedPerson[]
+}
+
+export interface Marriage {
+    spouse: Person
+    children: FullyLoadedPerson[]
+}
