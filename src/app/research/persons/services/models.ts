@@ -5,15 +5,11 @@ export interface Person {
     gender: string,
     dateOfBirth: Date,
     dateOfDeath: Date,
-    id: number
-}
-
-export interface FullyLoadedPerson extends Person {
-    marriages: Marriage[]    
-    siblings: FullyLoadedPerson[]
+    id: number, 
+    marriages: Marriage[]
 }
 
 export interface Marriage {
     spouse: Person
-    children: FullyLoadedPerson[]
+    children: Person[]
 }

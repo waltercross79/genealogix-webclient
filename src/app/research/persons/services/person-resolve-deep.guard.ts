@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
-import { Person, FullyLoadedPerson } from './models';
-import { Observable, of, EMPTY, throwError } from 'rxjs';
+import { Person } from './models';
+import { Observable, of, EMPTY } from 'rxjs';
 import { mergeMap, take, catchError, map } from 'rxjs/operators';
 import { PersonService } from './person.service';
 
@@ -13,11 +13,11 @@ export class PersonDeepResolver implements Resolve<Person> {
     constructor(private personService: PersonService, private router: Router) { }
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): 
-        Observable<FullyLoadedPerson> | Observable<never> {
+        Observable<Person> {
         
         let id: number = parseInt(route.paramMap.get("id"));
 
-        let o = this.personService.get(id, true) as Observable<FullyLoadedPerson>;
+        let o = this.personService.get(id, true);
         let o1 = o.pipe(  
             take(1),          
             catchError(err => {

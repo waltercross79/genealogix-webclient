@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
-import { Person, FullyLoadedPerson, Marriage } from '../services/models';
+import { Person, Marriage } from '../services/models';
 
 @Component({
   selector: 'app-tree-viewer',
@@ -8,7 +8,7 @@ import { Person, FullyLoadedPerson, Marriage } from '../services/models';
 })
 export class TreeViewerComponent implements OnInit, AfterViewInit {  
 
-  @Input() data: FullyLoadedPerson;
+  @Input() data: Person;
 
   constructor() { }
 
@@ -26,12 +26,12 @@ export class TreeViewerComponent implements OnInit, AfterViewInit {
     }  
   }
 
-  getChildren(children: FullyLoadedPerson[]): person[] {
+  getChildren(children: Person[]): person[] {
     let result = [];
 
     if(children) {
       children.forEach(c => {
-        result.push(this.getPerson(c, this.getCssClass(c.gender)), this.getMarriages(c.marriages));
+        result.push(this.getPerson(c, this.getCssClass(c.gender), c.marriages));
       });
     }
 
@@ -148,8 +148,8 @@ export class TreeViewerComponent implements OnInit, AfterViewInit {
           alert('Right-click: ' + name);
         },
         textRenderer: function(name, extra, textClass) {
-          if (extra && extra.dob)
-            name = name + " <br />(" + extra.dob + ")";
+          if (extra && extra.dates)
+            name = name + " <br />(" + extra.dates + ")";
           return "<p align='center' class='" + textClass + "'>" + name + "</p>";
         }
       }
