@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Record } from '../services/models';
-import { recordBase64 } from '../services/records.service';
+import { ImageService } from 'src/app/shared/image.service';
 
 @Component({
   selector: 'app-detail-records',
@@ -24,10 +24,13 @@ import { recordBase64 } from '../services/records.service';
 })
 export class DetailComponent implements OnInit {
 
-  images: string[] = [];
+  images: string[];
   record: Record;
+  hasImage: Boolean = false;
 
-  constructor(private route: ActivatedRoute, private router: Router) { }
+  constructor(private route: ActivatedRoute, 
+    private imageService: ImageService) {       
+    }
 
   ngOnInit() {
     // get record details from router
@@ -36,10 +39,9 @@ export class DetailComponent implements OnInit {
     });
 
     // download the image data and convert to base64 string
-    this.getImage(Number.parseInt(this.route.snapshot.params['id']));
-  }
-
-  getImage(id: number) {
-    this.images = [recordBase64];
-  }
+    this.imageService.getImage64(this.record.image).then(string64 => {
+      this.images = [string64];
+      this.hasImage = true;
+    });
+  }  
 }

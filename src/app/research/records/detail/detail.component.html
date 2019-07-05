@@ -4,7 +4,8 @@
 <div fxLayout="row" fxLayout.xs="column">
 
   <div fxFlex="80">
-    <app-image-viewer [images]="images"
+    <app-image-viewer *ngIf="hasImage"
+    [images]="images"
     [idContainer]="'idOnHTML'"
     [loadOnInit]="true"
     [showPDFOnlyOption]="false"

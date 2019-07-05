@@ -19,7 +19,6 @@
     "fake-jwt-sign": "^1.1.0",
     "hammerjs": "^2.0.8",
     "http-server": "^0.11.1",
-    "iv-viewer": "^2.0.1",
     "jwt-decode": "^2.2.0",
     "ng2-image-viewer": "^3.0.4",
     "rxjs": "~6.5.2",

@@ -1,3 +1,6 @@
+import { SafeResourceUrl } from '@angular/platform-browser';
+import { read } from 'fs';
+
 export enum RecordType {
     Birth = 1, Death = 2, Marriage = 3
 }
@@ -77,26 +80,34 @@ export class PersonInRecord {
 
 export class RecordThumbnail {  
 
-    private _src: string | ArrayBuffer;
-
+    private _safeUrl: SafeResourceUrl;
+    
     constructor(public id: number, public thumbnail: Blob, 
-        public date: Date, public type: RecordType) {    
-
-        if(this.thumbnail) {
-            let that = this;
-            let reader = new FileReader();
-            reader.readAsDataURL(this.thumbnail);
-            reader.onloadend = function() {
-                that.src = reader.result;            
-            }            
-        }
+        public date: Date, public type: RecordType) {            
     }  
 
-    public set src(val: string | ArrayBuffer) {
-        this._src = val;
+    public get src(): Promise<string> {
+        let reader = new FileReader();
+        let result = new Promise<string>((resolve, reject) => {
+            reader.onerror = () => {
+                reader.abort();
+                reject(new DOMException("Error reading thumbnail data."));
+            };
+
+            reader.onloadend = () => {
+                resolve((reader.result as string)); //.replace(/data:.*;base64,/g, ''));
+            }
+        });
+        reader.readAsDataURL(this.thumbnail);
+
+        return result;
     }
 
-    public get src(): string | ArrayBuffer {
-        return this._src;
+    public set safeUrl(value: SafeResourceUrl) {
+        this._safeUrl = value;
+    }
+
+    public get safeUrl(): SafeResourceUrl {
+        return this._safeUrl;
     }
   }

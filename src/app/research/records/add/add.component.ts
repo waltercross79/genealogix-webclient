@@ -7,6 +7,7 @@ import { ConnectPersonsDialogComponent } from '../connect-persons/connect-person
 import { MatDialog } from '@angular/material';
 import { RecordsService } from '../services/records.service';
 import { PersonService } from '../../persons/services/person.service';
+import { ImageService } from 'src/app/shared/image.service';
 
 @Component({
   selector: 'app-add-record',
@@ -33,7 +34,7 @@ export class AddComponent implements OnInit {
 
   constructor(private uiService: UiService, private router: Router,
     private fb: FormBuilder, public dialog: MatDialog, 
-    private recordsService: RecordsService, private personService: PersonService) { 
+    private recordsService: RecordsService, private imageService: ImageService) { 
     this.record = new RegistryRecord();
   }
 
@@ -114,7 +115,7 @@ export class AddComponent implements OnInit {
       this.recordDetailsForm.value.folio,
       this.recordDetailsForm.value.registry,
       this.record.persons,
-      this.getImage()
+      this.imageService.getImageBlob(this.images[0])
     )).subscribe(r => {
       this.router.navigate(['/', 'research', 'records', r.id]);
     },
@@ -143,15 +144,5 @@ export class AddComponent implements OnInit {
         this.persons.setData(this.record.persons);
       }
     });
-  }
-
-  private getImage(): Blob {
-    let byteChars = atob(this.images[0]);
-    let byteNums =new Array(byteChars.length);
-    for (let i = 0; i < byteChars.length; i++) {
-      byteNums[i] = byteChars.charCodeAt(i);
-    }
-    let byteArray = new Uint8Array(byteNums);
-    return new Blob([byteArray]);
-  }
+  }  
 }
