@@ -37,14 +37,7 @@
 <div fxLayout="column" class="margin-top20">
     <!-- This is a placeholder for records caroussel - records related to this person. -->
     <h3 class="mat-h3">Related Records</h3>
-    <div fxLayout="row wrap" fxLayoutGap="10px">
-        <div class="margin-top20" style="width: 150px; height: 150px; border: 1px solid red;">Record 1</div>
-        <div class="margin-top20" style="width: 150px; height: 150px; border: 1px solid red;">Record 2</div>
-        <div class="margin-top20" style="width: 150px; height: 150px; border: 1px solid red;">Record 3</div>
-        <div class="margin-top20" style="width: 150px; height: 150px; border: 1px solid red;">Record 4</div>
-        <div class="margin-top20" style="width: 150px; height: 150px; border: 1px solid red;">Record 5</div>
-        <div class="margin-top20" style="width: 150px; height: 150px; border: 1px solid red;">Record 6</div>
-    </div>
+    <app-person-records [personId]="person.id"></app-person-records>
 </div>
 <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="10px" class="margin-top20">
     <a mat-button routerLink="/research/persons/search">Close</a>

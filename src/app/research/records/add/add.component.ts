@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Record, RegistryRecord, PersonInRecord } from '../services/models';
+import { Record, RegistryRecord } from '../services/models';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { UiService } from 'src/app/common/ui.service';
 import { Router } from '@angular/router';
@@ -113,7 +113,8 @@ export class AddComponent implements OnInit {
       this.recordDetailsForm.value.country,
       this.recordDetailsForm.value.folio,
       this.recordDetailsForm.value.registry,
-      this.record.persons
+      this.record.persons,
+      this.getImage()
     )).subscribe(r => {
       this.router.navigate(['/', 'research', 'records', r.id]);
     },
@@ -142,5 +143,15 @@ export class AddComponent implements OnInit {
         this.persons.setData(this.record.persons);
       }
     });
+  }
+
+  private getImage(): Blob {
+    let byteChars = atob(this.images[0]);
+    let byteNums =new Array(byteChars.length);
+    for (let i = 0; i < byteChars.length; i++) {
+      byteNums[i] = byteChars.charCodeAt(i);
+    }
+    let byteArray = new Uint8Array(byteNums);
+    return new Blob([byteArray]);
   }
 }

@@ -14,9 +14,11 @@ import { DetailComponent } from './detail/detail.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { EditComponent } from './edit/edit.component';
 import { TreeViewerComponent } from './tree-viewer/tree-viewer.component';
+import { PersonRecordsComponent } from './detail/person-records.component';
+import { RecordsModule } from '../records/records.module';
 
 @NgModule({
-  declarations: [FiltersComponent, SearchComponent, HomeComponent, AddComponent, DetailComponent, EditComponent,TreeViewerComponent],
+  declarations: [FiltersComponent, SearchComponent, HomeComponent, AddComponent, DetailComponent, EditComponent,TreeViewerComponent, PersonRecordsComponent],
   imports: [
     CommonModule,
     PersonsRoutingModule,

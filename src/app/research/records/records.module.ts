@@ -5,7 +5,6 @@ import { FiltersComponent } from './filters/filters.component';
 import { SearchComponent } from './search/search.component';
 import { EditComponent } from './edit/edit.component';
 import { AddComponent } from './add/add.component';
-import { ViewerComponent } from './viewer/viewer.component';
 import { DetailComponent } from './detail/detail.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -27,7 +26,7 @@ import { ConnectPersonsDialogComponent } from './connect-persons/connect-persons
 
 @NgModule({
   declarations: [HomeComponent, FiltersComponent, SearchComponent, 
-    EditComponent, AddComponent, ViewerComponent, DetailComponent, 
+    EditComponent, AddComponent, DetailComponent, 
     DashboardComponent, RecordTypePipe, PersonRolePipe, PersonsComponent, ConnectPersonsDialogComponent],
   imports: [
     RecordsRoutingModule, ReactiveFormsModule, CommonModule,
@@ -37,5 +36,6 @@ import { ConnectPersonsDialogComponent } from './connect-persons/connect-persons
     ImageViewerModule, PersonsModule, MatOptionModule, MatSelectModule, SharedModule,
     MatDialogModule, MatSidenavModule, MatStepperModule],
   entryComponents: [HomeComponent, ConnectPersonsDialogComponent],  
+  exports: [RecordTypePipe]
 })
 export class RecordsModule { }

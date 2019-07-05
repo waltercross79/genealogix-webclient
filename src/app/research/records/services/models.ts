@@ -17,13 +17,14 @@ export interface Record {
     country: string
     folio: string,
     registry: string  
-    persons: PersonInRecord[]  
+    persons: PersonInRecord[],
+    image: Blob
 }
 
 export class RegistryRecord implements Record {
     constructor(recordDate?: Date, recordType?: RecordType, id?: number, 
         number?: string, street?: string, town?: string, country?: string,
-        folio?: string, registry?: string, persons?: PersonInRecord[]) {
+        folio?: string, registry?: string, persons?: PersonInRecord[], image?: Blob) {
         this.id = id ? id : 0;
         this.recordDate = recordDate;
         this.recordType = recordType;
@@ -34,6 +35,7 @@ export class RegistryRecord implements Record {
         this.folio = folio ? folio : '';
         this.registry = registry ? registry : '';
         this.persons = persons ? persons : [];
+        this.image = image;
     }    
 
     static create(record: Record): RegistryRecord {
@@ -46,7 +48,8 @@ export class RegistryRecord implements Record {
         result.town = record.town;
         result.folio = record.folio;
         result.registry = record.registry;
-        result.persons = record.persons ? record.persons : [];
+        result.persons = record.persons ? record.persons : [];    
+        result.image = record.image;    
 
         return result;
     }
@@ -60,7 +63,8 @@ export class RegistryRecord implements Record {
     country: string;
     folio: string;
     registry: string; 
-    persons: PersonInRecord[];   
+    persons: PersonInRecord[]; 
+    image: Blob;  
 }
 
 export class PersonInRecord {
@@ -70,3 +74,29 @@ export class PersonInRecord {
     role: PersonRole;
     dob: Date;
 }
+
+export class RecordThumbnail {  
+
+    private _src: string | ArrayBuffer;
+
+    constructor(public id: number, public thumbnail: Blob, 
+        public date: Date, public type: RecordType) {    
+
+        if(this.thumbnail) {
+            let that = this;
+            let reader = new FileReader();
+            reader.readAsDataURL(this.thumbnail);
+            reader.onloadend = function() {
+                that.src = reader.result;            
+            }            
+        }
+    }  
+
+    public set src(val: string | ArrayBuffer) {
+        this._src = val;
+    }
+
+    public get src(): string | ArrayBuffer {
+        return this._src;
+    }
+  }
