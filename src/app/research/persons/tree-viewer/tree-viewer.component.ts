@@ -61,76 +61,23 @@ export class TreeViewerComponent implements OnInit, AfterViewInit {
 
   createTree() {
     /* Convert Person into object tree of the structure expected by dTree */
-    var self = this.getPerson(this.data, 'graphroot', this.data.marriages);    
-    return [self];
+    // The father of the current person should be the root; if no father then mother; if neither then this person.
+    let root = this.data;
 
-    // return [{
-    //   "name": "Ladislav Kriz",
-    // "class": "man node",
-    // "textClass": "emphasis",
-    // "extra": { 
-    //   "dob": "03-18-1955"       
-    // },
-    // "marriages": [{
-    //   "spouse": {
-    //     "name": "Zdenka Stara",
-    //     "class": "woman node",
-    //     "extra": { 
-    //       "dob": "05-18-1955"       
-    //     }
-    //   },
-    //   "children": [{
-    //     "name": "Ladislav Kriz Jr.",
-    //     "class": "man node",
-    //     "extra": { 
-    //       "dob": "10-26-1979"       
-    //     },
-    //     "marriages": [{
-    //       "spouse": {
-    //         "name": "Sara Hadfield-Boenig",
-    //         "class": "woman node",
-    //         "extra": { 
-    //           "dob": "12-26-1981"       
-    //         }
-    //       },
-    //       "children": [{
-    //         "name": "Naithan Hill",
-    //         "class": "man node",
-    //         "extra": { 
-    //           "dob": "12-13-2002"       
-    //         }       
-    //       }, {
-    //         "name": "Tallula",
-    //         "class": "woman node",
-    //         "extra": { 
-    //           "dob": "01-01-2013"       
-    //         }
-    //       }]
-    //     }]
-    //   }, {
-    //     "name": "Jakub Kriz",
-    //     "class": "man node",
-    //     "extra": { 
-    //       "dob": "05-21-1985"       
-    //     },
-    //     "marriages": [{
-    //       "spouse": {
-    //         "name": "Tereza Stejskalova",
-    //         "class": "woman node"
-    //       },
-    //       "children": [
-    //         {
-    //           "name": "Jonas Kriz",
-    //           "class": "man node",
-    //           "extra": { 
-    //             "dob": "04-12-2019"       
-    //           }
-    //         }
-    //       ]
-    //     }]
-    //   }]
-    // }]
-    // }];
+    if(this.data.parents && this.data.parents.length > 0) {
+      let father = this.data.parents.find(p => p.gender == 'M');
+      if(father) {
+        root = father;
+      } else {
+        let mother = this.data.parents.find(p => p.gender == 'F');
+        if(mother) {
+          root = mother;
+        }
+      }
+    }
+    
+    var treeRoot = this.getPerson(root, 'graphroot', root.marriages);    
+    return [treeRoot];    
   }
 
   ngAfterViewInit(): void {
@@ -138,7 +85,7 @@ export class TreeViewerComponent implements OnInit, AfterViewInit {
     dTree.init(jsonTree,  {
       target: "#graph",
       debug: true,
-      height: 800,
+      //height: 800,
       //width: "100%",
       callbacks: {
         nodeClick: function(name, extra) {

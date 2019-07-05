@@ -62,7 +62,8 @@ export class EditComponent implements OnInit {
       gender: this.editor.value.gender,
       dateOfBirth: this.editor.value.dob,
       dateOfDeath: this.editor.value.dod,
-      marriages: []
+      marriages: [],
+      parents: []
     }).subscribe(p => {
       this.uiService.showToast('Person created successfully!');
       this.router.navigate(['/', 'research', 'persons', p.id]);

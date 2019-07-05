@@ -6,7 +6,8 @@ export interface Person {
     dateOfBirth: Date,
     dateOfDeath: Date,
     id: number, 
-    marriages: Marriage[]
+    marriages: Marriage[],
+    parents: Person[]
 }
 
 export interface Marriage {

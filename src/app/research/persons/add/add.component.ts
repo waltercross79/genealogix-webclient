@@ -85,7 +85,8 @@ export class AddComponent implements OnInit {
       gender: this.editor.value.gender,
       dateOfBirth: this.editor.value.dob,
       dateOfDeath: this.editor.value.dod,
-      marriages: []
+      marriages: [],
+      parents: []
     }
   }
 
