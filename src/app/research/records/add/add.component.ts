@@ -9,7 +9,7 @@ import { RecordsService } from '../services/records.service';
 import { PersonService } from '../../persons/services/person.service';
 
 @Component({
-  selector: 'app-add',
+  selector: 'app-add-record',
   templateUrl: './add.component.html',
   styles: [`
   mat-sidenav {

@@ -9,7 +9,7 @@ import { ConnectPersonsDialogComponent } from '../connect-persons/connect-person
 import { PersonService } from '../../persons/services/person.service';
 
 @Component({
-  selector: 'app-edit',
+  selector: 'app-edit-records',
   templateUrl: './edit.component.html',
   styles: []
 })

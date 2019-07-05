@@ -3,11 +3,9 @@ import { Router } from '@angular/router';
 import { SideNavService } from 'src/app/shared/menu/sidenav.service';
 
 @Component({
-  selector: 'app-home',
+  selector: 'app-home-person',
   template: `
-    <p>
-      home works!
-    </p>
+    <router-outlet></router-outlet>
   `,
   styles: []
 })

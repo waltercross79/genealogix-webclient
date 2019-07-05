@@ -5,7 +5,7 @@ import { DataService } from 'src/app/common/data.service';
 const RECORD_FILTERS_ITEM: string = "RECORD_FILTERS_ITEM";
 
 @Component({
-  selector: 'app-filters',
+  selector: 'app-filters-records',
   templateUrl: './filters.component.html',
   styleUrls: ['./filters.component.css']
 })

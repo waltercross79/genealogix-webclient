@@ -6,7 +6,7 @@ import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
 import { UiService } from 'src/app/common/ui.service';
 
 @Component({
-  selector: 'app-edit',
+  selector: 'app-edit-person',
   templateUrl: './edit.component.html',
   styles: []
 })

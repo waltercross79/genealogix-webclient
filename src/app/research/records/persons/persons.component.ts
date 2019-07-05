@@ -4,7 +4,7 @@ import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 import { UiService } from 'src/app/common/ui.service';
 
 @Component({
-  selector: 'app-persons',
+  selector: 'app-persons-records',
   templateUrl: './persons.component.html',
   styles: []
 })

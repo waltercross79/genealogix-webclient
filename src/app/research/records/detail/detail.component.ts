@@ -4,7 +4,7 @@ import { Record } from '../services/models';
 import { recordBase64 } from '../services/records.service';
 
 @Component({
-  selector: 'app-detail',
+  selector: 'app-detail-records',
   templateUrl: './detail.component.html',
   styles: [`.record-detail-container div {
     margin-bottom: 10px;    

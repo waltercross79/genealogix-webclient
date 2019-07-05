@@ -88,7 +88,7 @@
         <mat-step>
           <ng-template matStepLabel>Connect people to record</ng-template>
           <div>
-            <app-persons #persons [record]="record" (addPerson)="showConnectPerson($event)" (findPerson)="showCreatePerson($event)"></app-persons>
+            <app-persons-records #persons [record]="record" (addPerson)="showConnectPerson($event)" (findPerson)="showCreatePerson($event)"></app-persons-records>
           </div>
 
         </mat-step>

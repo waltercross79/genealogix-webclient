@@ -3,7 +3,7 @@ import { Person } from '../services/models';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-detail',
+  selector: 'app-detail-person',
   templateUrl: './detail.component.html',  
   styles: [
   `.person-detail-container div {

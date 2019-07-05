@@ -1,6 +1,6 @@
 <div>
     <h2 class="mat-h2">Records Search by Criteria</h2>
-    <app-filters (selectedFilters)="onSelectedFilters($event)"></app-filters>
+    <app-filters-records (selectedFilters)="onSelectedFilters($event)"></app-filters-records>
     
     <div fxLayout="row">
         <mat-table [dataSource]="dataSource" fxFlex="100" matSort>

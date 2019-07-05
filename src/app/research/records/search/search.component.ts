@@ -6,7 +6,7 @@ import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-search',
+  selector: 'app-search-records',
   templateUrl: './search.component.html',
   styles: []
 })

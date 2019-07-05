@@ -5,7 +5,7 @@ import { DataService } from 'src/app/common/data.service';
 const PERSON_FILTERS_ITEM = "PERSON_FILTERS_ITEM";
 
 @Component({
-  selector: 'app-filters',
+  selector: 'app-filters-person',
   templateUrl: './filters.component.html',
   styles: []
 })

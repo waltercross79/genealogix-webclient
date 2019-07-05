@@ -1,6 +1,6 @@
 <div>
   <h2 class="mat-h2">Person Search by Criteria</h2>
-  <app-filters (selected)="onSelectedFilters($event)" (cancelled)="onCancelled($event)" [showCancelButton]="isInRecordContext"></app-filters>
+  <app-filters-person (selected)="onSelectedFilters($event)" (cancelled)="onCancelled($event)" [showCancelButton]="isInRecordContext"></app-filters-person>
   <div layout="row">
     <mat-table [dataSource]="dataSource" matSort>
         <ng-container matColumnDef="id">

@@ -3,7 +3,7 @@ import { SideNavService } from 'src/app/shared/menu/sidenav.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-home',
+  selector: 'app-home-records',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
