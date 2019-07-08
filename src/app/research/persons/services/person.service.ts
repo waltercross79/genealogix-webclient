@@ -157,4 +157,10 @@ export class PersonService {
 
     return result;
   }
+
+  delete(id: number): Observable<void> {
+    return new Observable((observer) => {
+      observer.next();
+    });
+  }
 }

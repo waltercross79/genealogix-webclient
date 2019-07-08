@@ -4,7 +4,11 @@ import { SideNavService } from 'src/app/shared/menu/sidenav.service';
 @Component({
   selector: 'app-home-person',
   template: `
-    <router-outlet></router-outlet>
+  <h2 class="mat-h2">Persons and Relations</h2>
+  <p>
+      This is home page of Persons functionality. You can search, edit and view.
+  </p>
+  
   `,
   styles: []
 })

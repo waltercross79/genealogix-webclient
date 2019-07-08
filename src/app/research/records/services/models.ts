@@ -1,5 +1,4 @@
 import { SafeResourceUrl } from '@angular/platform-browser';
-import { read } from 'fs';
 
 export enum RecordType {
     Birth = 1, Death = 2, Marriage = 3
@@ -95,7 +94,7 @@ export class RecordThumbnail {
             };
 
             reader.onloadend = () => {
-                resolve((reader.result as string)); //.replace(/data:.*;base64,/g, ''));
+                resolve((reader.result as string));
             }
         });
         reader.readAsDataURL(this.thumbnail);

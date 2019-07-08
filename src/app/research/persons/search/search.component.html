@@ -45,7 +45,7 @@
           <a *ngIf="isInRecordContext==false" mat-button routerLink="/research/persons/edit/{{p.id}}" aria-label="Edit Person">
               <mat-icon>edit</mat-icon>
           </a>
-          <button *ngIf="isInRecordContext==false" mat-button (click)="delete(p)" aria-label="Delete Person">
+          <button *ngIf="isInRecordContext==false" mat-button (click)="delete(p.id)" aria-label="Delete Person">
               <mat-icon>delete</mat-icon>
           </button>
         </mat-cell>      

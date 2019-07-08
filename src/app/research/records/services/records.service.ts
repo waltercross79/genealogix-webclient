@@ -122,5 +122,11 @@ export class RecordsService {
         new RecordThumbnail(3, this.defaultImage, new Date(2000, 12, 5), RecordType.Marriage)]);
     });
   }
+
+  delete(id: number): Observable<void> {
+    return new Observable((observer) => {
+      observer.next();
+    });
+  }
 }
 

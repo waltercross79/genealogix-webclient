@@ -20,7 +20,7 @@ export class AppComponent {
   }
 
   onMenuChanged() {
-    //this.sidenav.open();
+    this.sidenav.close();
   }
 }
 

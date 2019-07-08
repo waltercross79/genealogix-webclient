@@ -65,7 +65,7 @@ export class EditComponent implements OnInit {
       marriages: [],
       parents: []
     }).subscribe(p => {
-      this.uiService.showToast('Person created successfully!');
+      this.uiService.showToast('Person updated successfully!');
       this.router.navigate(['/', 'research', 'persons', p.id]);
     }, error => {
       this.uiService.showToast(error);

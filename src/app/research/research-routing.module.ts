@@ -19,7 +19,8 @@ import { PersonResolver } from './persons/services/person-resolve.guard';
 
 const routes: Routes = [
   { path: '', component: ResearchComponent, children: [    
-    { path: 'persons', component: PersonsHomeComponent, children: [
+    { path: 'persons', children: [
+      { path: '', component: PersonsHomeComponent },
       { path: 'search', component: PersonsSearchComponent },
       { path: 'add', component: PersonsAddComponent },
       { path: 'edit', children: [
@@ -27,7 +28,8 @@ const routes: Routes = [
       ]},
       { path: ':id', component: PersonsDetailComponent, resolve:{ person: PersonDeepResolver } }
     ]},
-    { path: 'records', component: RecordsHomeComponent, children: [    
+    { path: 'records', children: [    
+      { path: '', component: RecordsHomeComponent},
       { path: 'add', component: RecordsAddComponent },
       { path: 'search', component: RecordsSearchComponent },
       { path: 'edit', children: [
