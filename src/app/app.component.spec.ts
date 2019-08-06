@@ -24,9 +24,9 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'GeneaTool'`, () => {
+  it(`should have as title 'genealogix'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('GeneaTool');
+    expect(app.title).toEqual('genealogix');
   });
 });

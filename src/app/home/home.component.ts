@@ -17,7 +17,7 @@ import { SideNavService } from '../shared/menu/sidenav.service';
       <a mat-raised-button routerLink="/research" color="accent">Research</a>
     </mat-toolbar>
     <div>
-      <h2 class="mat-h2">Welcome to GeneaTool!</h2>
+      <h2 class="mat-h2">Welcome to Genealogix!</h2>
       <p>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla condimentum nisi ac lacus imperdiet pellentesque. In nec est velit. Fusce in iaculis mi. Aliquam aliquam dictum tellus. Nulla dui velit, maximus posuere scelerisque sollicitudin, consectetur nec enim. Phasellus eget arcu tortor. Cras accumsan dignissim interdum. Etiam ultricies mattis sapien, sed euismod tortor eleifend auctor. In hac habitasse platea dictumst. Curabitur at porttitor nulla. Nulla elit sapien, blandit ac leo sit amet, malesuada euismod nisl. Pellentesque cursus erat ac tempus facilisis. Etiam et tortor id est pretium tempor at eget eros. Sed tincidunt quam eget viverra malesuada. Donec pulvinar vel nisi eget efficitur.
 
@@ -50,13 +50,13 @@ export class HomeComponent implements OnInit {
 
         if(s.isAuthenticated) {
           this.sidenavService.changeMenu([
-            { header: 'GeneaTool Home', items: [
+            { header: 'Genealogix Home', items: [
               { text: 'Research', url: '/research', icon: 'image_search'},
             ]}
           ]);
         } else {
           this.sidenavService.changeMenu([
-            { header: 'GeneaTool Home', items: [
+            { header: 'Genealogix Home', items: [
               { text: 'Login', url: '/login', icon: ''},
             ]}
           ]);

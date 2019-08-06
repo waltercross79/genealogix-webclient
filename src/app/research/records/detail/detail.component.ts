@@ -39,9 +39,7 @@ export class DetailComponent implements OnInit {
     });
 
     // download the image data and convert to base64 string
-    this.imageService.getImage64(this.record.image).then(string64 => {
-      this.images = [string64];
-      this.hasImage = true;
-    });
+    this.images = [this.record.image.imageb64];
+    this.hasImage = true;
   }  
 }

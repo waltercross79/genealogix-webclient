@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Record, RegistryRecord } from '../services/models';
+import { Record, RegistryRecord, ImageFile } from '../services/models';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { UiService } from 'src/app/common/ui.service';
 import { Router } from '@angular/router';
@@ -31,6 +31,7 @@ export class AddComponent implements OnInit {
   hasImage: boolean = false;
   recordDetailsForm: FormGroup;
   fileForm: FormGroup;
+  fileName: string;
 
   constructor(private uiService: UiService, private router: Router,
     private fb: FormBuilder, public dialog: MatDialog, 
@@ -98,8 +99,10 @@ export class AddComponent implements OnInit {
     let fileReader = new FileReader();
     fileReader.onload = (e) => {      
       this.images = [(fileReader.result as string).replace(/data:.*;base64,/g, '')];
+      this.fileName = this.file.nativeElement.files[0].name;
       this.hasImage = true;         
     }
+    
     fileReader.readAsDataURL(this.file.nativeElement.files[0]);
   }
 
@@ -115,9 +118,16 @@ export class AddComponent implements OnInit {
       this.recordDetailsForm.value.folio,
       this.recordDetailsForm.value.registry,
       this.record.persons,
-      this.imageService.getImageBlob(this.images[0])
+      null
     )).subscribe(r => {
-      this.router.navigate(['/', 'research', 'records', r.id]);
+      this.imageService.saveImage(this.record.image, r.id)
+        .subscribe(s => {
+          console.log(s);
+          this.router.navigate(['/', 'research', 'records', r.id]);
+        },
+        err => {
+          this.uiService.showToast(err);
+        });      
     },
     error => {
       this.uiService.showToast(error);

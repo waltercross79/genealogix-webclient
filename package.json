@@ -1,5 +1,5 @@
 {
-  "name": "geneatool-ng",
+  "name": "genealogix",
   "version": "0.0.1",
   "private": true,
   "dependencies": {
@@ -52,8 +52,8 @@
     "typescript": "~3.4.5"
   },
   "config": {
-    "imageRepo": "waltercross/geneatool-spa",
-    "imageName": "geneatool-spa",
+    "imageRepo": "waltercross/genealogix-spa",
+    "imageName": "genealogix-spa",
     "imagePort": "7890"
   },
   "scripts": {

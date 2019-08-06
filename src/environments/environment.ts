@@ -4,7 +4,10 @@
 
 export const environment = {
   production: false,
-  oauthUrl: ''
+  oauthUrl: '',
+  personApiUrl: 'http://localhost/api/v1/',
+  imageApiUrl: 'http://localhost:5000/api/v1/',
+  recordApiUrl: 'http://localhost:5000/api/v1/'
 };
 
 /*

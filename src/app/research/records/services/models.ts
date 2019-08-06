@@ -20,13 +20,13 @@ export interface Record {
     folio: string,
     registry: string  
     persons: PersonInRecord[],
-    image: Blob
+    image: ImageFile
 }
 
 export class RegistryRecord implements Record {
     constructor(recordDate?: Date, recordType?: RecordType, id?: number, 
         number?: string, street?: string, town?: string, country?: string,
-        folio?: string, registry?: string, persons?: PersonInRecord[], image?: Blob) {
+        folio?: string, registry?: string, persons?: PersonInRecord[], image?: ImageFile) {
         this.id = id ? id : 0;
         this.recordDate = recordDate;
         this.recordType = recordType;
@@ -66,7 +66,17 @@ export class RegistryRecord implements Record {
     folio: string;
     registry: string; 
     persons: PersonInRecord[]; 
-    image: Blob;  
+    image: ImageFile;  
+}
+
+export class ImageFile {
+    constructor(fileName: string, image: string) {
+        this.fileName = fileName;
+        this.imageb64 = image;
+    }
+
+    fileName: string;
+    imageb64: string;
 }
 
 export class PersonInRecord {

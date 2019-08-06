@@ -10,7 +10,7 @@ import { MatIconRegistry } from '@angular/material';
 export class AppComponent {
 
   @ViewChild('sidenav', { static: true }) sidenav;
-  title = 'GeneaTool';
+  title = 'Genealogix';
 
   constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
     iconRegistry.addSvgIcon(

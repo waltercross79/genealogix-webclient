@@ -2,7 +2,7 @@ FROM duluca/minimal-node-build-env:10.14.2 as builder
 
 # project variables
 ENV SRC_DIR /usr/src
-ENV GIT_REPO https://github.com/waltercross79/geneatool-ng.git
+ENV GIT_REPO https://github.com/waltercross79/genealogix-webclient.git
 ENV SRC_CODE_LOCATION .
 ENV BUILD_SCRIPT build:prod
 

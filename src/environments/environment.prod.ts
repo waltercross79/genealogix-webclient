@@ -1,4 +1,5 @@
 export const environment = {
   production: true,
-  oauthUrl: ''
+  oauthUrl: '',
+  personApiUrl: 'http://localhost/api/v1/'
 };

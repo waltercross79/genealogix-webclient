@@ -1,4 +1,7 @@
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
+import { ImageFile } from '../research/records/services/models';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +11,7 @@ export class ImageService {
   defaultRecordBase64 = 'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==';
   recordBase64 = 'iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==';
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   getDefaultImage64(): string {
     return this.defaultRecordBase64;
@@ -42,5 +45,16 @@ export class ImageService {
     return new Blob([byteArray]);
   }
 
-
+  saveImage(image: ImageFile, id: number) {
+    var body = new HttpParams()
+      .set('record_id', id.toString())
+      .set('file_name', image.fileName)
+      .set('image', image.imageb64);
+    return this.http.post<void>(environment.imageApiUrl + 'images/',
+      body.toString(),
+      {
+        headers: new HttpHeaders()
+          .set('Content-Type', 'application/x-www-form-urlencoded')
+      });   
+  }
 }

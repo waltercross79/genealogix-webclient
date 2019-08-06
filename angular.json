@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "geneatool-ng": {
+    "genealogix": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/geneatool-ng",
+            "outputPath": "dist/genealogix",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -79,19 +79,19 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "geneatool-ng:build",
+            "browserTarget": "genealogix:build",
             "port": 5000
           },
           "configurations": {
             "production": {
-              "browserTarget": "geneatool-ng:build:production"
+              "browserTarget": "genealogix:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "geneatool-ng:build"
+            "browserTarget": "genealogix:build"
           }
         },
         "test": {
@@ -125,7 +125,7 @@
         }
       }
     },
-    "geneatool-ng-e2e": {
+    "genealogix-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "prefix": "",
@@ -134,12 +134,12 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "geneatool-ng:serve",
+            "devServerTarget": "genealogix:serve",
             "port": 5001
           },
           "configurations": {
             "production": {
-              "devServerTarget": "geneatool-ng:serve:production"
+              "devServerTarget": "genealogix:serve:production"
             }
           }
         },
@@ -155,5 +155,5 @@
       }
     }
   },
-  "defaultProject": "geneatool-ng"
+  "defaultProject": "genealogix"
 }
