@@ -1,5 +1,11 @@
 import { SafeResourceUrl } from '@angular/platform-browser';
 
+export class ModelBase {
+    getDatePart(date: Date): Date {
+        return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+    }
+}
+
 export enum RecordType {
     Birth = 1, Death = 2, Marriage = 3
 }
@@ -10,7 +16,7 @@ export enum PersonRole {
 }
 
 export interface Record {
-    id: number,
+    id: string,
     recordDate: Date,
     recordType: RecordType
     street: string,
@@ -20,24 +26,29 @@ export interface Record {
     folio: string,
     registry: string  
     persons: PersonInRecord[],
-    image: ImageFile
+    image: ImageFile,
+    imageIdentifiers: string[]
 }
 
-export class RegistryRecord implements Record {
-    constructor(recordDate?: Date, recordType?: RecordType, id?: number, 
+export class RegistryRecord extends ModelBase implements Record {
+    constructor(recordDate?: Date, recordType?: RecordType, id?: string, 
         number?: string, street?: string, town?: string, country?: string,
-        folio?: string, registry?: string, persons?: PersonInRecord[], image?: ImageFile) {
-        this.id = id ? id : 0;
-        this.recordDate = recordDate;
-        this.recordType = recordType;
-        this.number = number ? number : '';
-        this.town = town ? town : '';
-        this.country = country ? country : '';
-        this.street = street ? street : '';
-        this.folio = folio ? folio : '';
-        this.registry = registry ? registry : '';
-        this.persons = persons ? persons : [];
-        this.image = image;
+        folio?: string, registry?: string, persons?: PersonInRecord[], image?: ImageFile,
+        imageIdentifiers? : string[]) {
+            super();
+
+            this.id = id ? id : '';
+            this.recordDate = recordDate ? this.getDatePart(recordDate) : null;
+            this.recordType = recordType;
+            this.number = number ? number : '';
+            this.town = town ? town : '';
+            this.country = country ? country : '';
+            this.street = street ? street : '';
+            this.folio = folio ? folio : '';
+            this.registry = registry ? registry : '';
+            this.persons = persons ? persons : [];
+            this.image = image;
+            this.imageIdentifiers = imageIdentifiers ? imageIdentifiers : [];
     }    
 
     static create(record: Record): RegistryRecord {
@@ -52,11 +63,12 @@ export class RegistryRecord implements Record {
         result.registry = record.registry;
         result.persons = record.persons ? record.persons : [];    
         result.image = record.image;    
+        result.imageIdentifiers = record.imageIdentifiers ? record.imageIdentifiers : [];
 
         return result;
     }
 
-    id: number;    
+    id: string;    
     recordDate: Date;
     recordType: RecordType;
     street: string;
@@ -67,6 +79,7 @@ export class RegistryRecord implements Record {
     registry: string; 
     persons: PersonInRecord[]; 
     image: ImageFile;  
+    imageIdentifiers: string[]
 }
 
 export class ImageFile {
@@ -79,12 +92,24 @@ export class ImageFile {
     imageb64: string;
 }
 
-export class PersonInRecord {
+export class PersonInRecord extends ModelBase {
     firstName: string;
     lastName: string;
     id: number;
     role: PersonRole;
     dob: Date;
+
+    constructor(role: PersonRole, firstName: string, lastName: string, 
+        id?: number, dob?: Date) {
+        super();
+
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.role = role;
+        this.dob = dob ? this.getDatePart(dob) : null;
+        this.role = role;
+        this.id = id;
+    }
 }
 
 export class RecordThumbnail {  

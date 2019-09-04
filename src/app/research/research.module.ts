@@ -8,7 +8,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule, MatToolbarModule, MatIconModule, MatListModule, MatInputModule, MatCheckboxModule, MatFormFieldModule, MatTableModule, MatPaginatorModule, MatSortModule, MatRadioModule, MatDatepickerModule, MatNativeDateModule, MatOptionModule, MatSelectModule, MatDialogModule, MatSidenavModule, MatStepperModule } from '@angular/material';
 import { MaterialModule } from '../material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { ImageViewerModule } from 'ng2-image-viewer';
 import { HomeComponent as RecordsHomeComponent } from './records/home/home.component';
 import { ConnectPersonsDialogComponent } from './records/connect-persons/connect-persons-dialog.component';
 import { FiltersComponent as RecordsFiltersComponent } from './records/filters/filters.component';
@@ -28,6 +27,7 @@ import { DetailComponent as PersonsDetailComponent } from './persons/detail/deta
 import { FiltersComponent as PersonsFiltersComponent } from './persons/filters/filters.component';
 import { TreeViewerComponent } from './persons/tree-viewer/tree-viewer.component';
 import { PersonRecordsComponent } from './persons/detail/person-records.component';
+import { Ng8ImageViewerLibModule } from 'ng8-image-viewer';
 
 @NgModule({
   declarations: [ResearchComponent, RecordsHomeComponent, RecordsFiltersComponent, RecordsSearchComponent, 
@@ -44,8 +44,9 @@ import { PersonRecordsComponent } from './persons/detail/person-records.componen
     MatButtonModule, MatToolbarModule, MatIconModule, MatListModule, MaterialModule,
     MatInputModule, MatCheckboxModule, MatFormFieldModule, FlexLayoutModule, MatTableModule,
     MatPaginatorModule, MatSortModule, MatRadioModule, MatDatepickerModule, MatNativeDateModule,
-    ImageViewerModule, MatOptionModule, MatSelectModule, 
+    MatOptionModule, MatSelectModule, 
     MatDialogModule, MatSidenavModule, MatStepperModule, 
+    Ng8ImageViewerLibModule
     ],
     entryComponents: [RecordsHomeComponent, ConnectPersonsDialogComponent], })
 export class ResearchModule { }

@@ -16,7 +16,7 @@ import { PersonService } from '../../persons/services/person.service';
 export class EditComponent implements OnInit {
 
   record: Record;
-  id: number;
+  id: string;
   editor: FormGroup;
   recordDateControl: FormControl = new FormControl('', [
     Validators.required
@@ -74,7 +74,7 @@ export class EditComponent implements OnInit {
       this.editor.value.recordDate, this.editor.value.recordType,
       this.editor.value.id, this.editor.value.number, this.editor.value.street,
       this.editor.value.town, this.editor.value.country, this.editor.value.folio,
-      this.editor.value.registry))
+      this.editor.value.registry, this.record.persons, null, this.record.imageIdentifiers))
       .subscribe((r: Record | string) => {
         if(typeof(r) === 'string') {
           // There was an error saving. Show the error in toast.

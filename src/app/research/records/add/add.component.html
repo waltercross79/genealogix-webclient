@@ -7,15 +7,7 @@
           <ng-template matStepLabel>Import file from disc</ng-template>
           <input type="file" #file style="display: none;" (change)="onFileSelected()" />  
           <button mat-raised-button type="button" (click)="fileOpenDialog()">Browse...</button>     
-          <app-image-viewer *ngIf="hasImage"
-            [images]="images"
-            [idContainer]="'idOnHTML'"
-            [loadOnInit]="true"
-            [showPDFOnlyOption]="false"
-            [primaryColor]="'#2c2c2c'" 
-            [buttonsColor]="'#e8f7fe'" 
-            [buttonsHover]="'#fff6af'">
-          </app-image-viewer>
+          <ng8-viewer [src]="images" [(index)]="imageIndexOne"></ng8-viewer>
         </mat-step>
         <mat-step  formGroupName="1" [stepControl]='formArray?.get([1])'>
           <ng-template matStepLabel>Enter record details</ng-template>

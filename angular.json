@@ -39,8 +39,7 @@
             ],
             "styles": [
               "src/styles.css",
-              "src/custom-theme.scss",
-              "node_modules/ng2-image-viewer/imageviewer.scss"
+              "src/custom-theme.scss"
             ],
             "scripts": [
               "node_modules/d3-dtree/dist/dTree.js",

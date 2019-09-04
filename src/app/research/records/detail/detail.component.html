@@ -4,12 +4,17 @@
 <div fxLayout="row" fxLayout.xs="column">
 
   <div fxFlex="80">
-    <app-image-viewer *ngIf="hasImage"
+    <!-- <app-image-viewer *ngIf="hasImage"
     [images]="images"
     [idContainer]="'idOnHTML'"
     [loadOnInit]="true"
     [showPDFOnlyOption]="false"
-    primaryColor="#2c2c2c" [buttonsColor]="'#e8f7fe'" [buttonsHover]="'#fff6af'"></app-image-viewer>
+    primaryColor="#2c2c2c" [buttonsColor]="'#e8f7fe'" [buttonsHover]="'#fff6af'"></app-image-viewer> -->
+    <ng8-viewer [src]="images"      
+      [(index)]="imageIndexOne"></ng8-viewer>
+    
+    
+    <div *ngIf="downloadingImage">Downloading Image...</div>
   </div>
   <div fxFlex="20" class="record-detail-container">
     <div fxLayout="row" fxLayoutGap="10px">

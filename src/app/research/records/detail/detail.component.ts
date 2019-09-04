@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Record } from '../services/models';
 import { ImageService } from 'src/app/shared/image.service';
+import { mergeAll } from 'rxjs/operators';
 
 @Component({
   selector: 'app-detail-records',
@@ -27,6 +28,8 @@ export class DetailComponent implements OnInit {
   images: string[];
   record: Record;
   hasImage: Boolean = false;
+  downloadingImage: Boolean = false;
+  imageIndexOne = 0;  
 
   constructor(private route: ActivatedRoute, 
     private imageService: ImageService) {       
@@ -34,12 +37,16 @@ export class DetailComponent implements OnInit {
 
   ngOnInit() {
     // get record details from router
-    this.route.data.subscribe((data: {record: Record}) =>{      
+    this.route.data
+    .subscribe((data: {record: Record}) =>{      
       this.record = data.record;
+      this.downloadingImage = true;
+      this.imageService.get(this.record.imageIdentifiers[0])
+        .subscribe(i => {
+          this.images = [i.value];
+          this.hasImage = true;
+          this.downloadingImage = false;
+        });      
     });
-
-    // download the image data and convert to base64 string
-    this.images = [this.record.image.imageb64];
-    this.hasImage = true;
   }  
 }

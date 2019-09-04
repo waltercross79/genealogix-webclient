@@ -35,15 +35,20 @@ export class SearchComponent implements OnInit {
   }
 
   private doSearch() {
-    this.recordsService.find().subscribe(result =>
-      this.dataSource.data = result);
+    this.recordsService.find(this.filters.recordDateFrom, this.filters.recordDateTo,
+        this.filters.includeBirths, this.filters.includeDeaths, this.filters.includeMarriages,
+        this.filters.street, this.filters.number, this.filters.town,
+        this.filters.country, this.filters.folio, this.filters.registry,
+        this.filters.firstName, this.filters.lastName)
+      .subscribe(result =>
+        this.dataSource.data = result);
   }
 
-  view(id: number) {
+  view(id: string) {
     this.router.navigate(['/research/records/' + id]);
   }
 
-  delete(id: number) {
+  delete(id: string) {
     // Show dialog to confirm.
 
     this.uiService.showDialog("Confirmation", 

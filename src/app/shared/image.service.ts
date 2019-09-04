@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { ImageFile } from '../research/records/services/models';
 import { environment } from 'src/environments/environment';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -45,16 +46,19 @@ export class ImageService {
     return new Blob([byteArray]);
   }
 
-  saveImage(image: ImageFile, id: number) {
+  saveImage(image: ImageFile) {
     var body = new HttpParams()
-      .set('record_id', id.toString())
-      .set('file_name', image.fileName)
-      .set('image', image.imageb64);
-    return this.http.post<void>(environment.imageApiUrl + 'images/',
+      .set('fileName', image.fileName)
+      .set('imageBase64', image.imageb64);
+    return this.http.post<{value: string}>(environment.imageApiUrl + 'image/',
       body.toString(),
       {
         headers: new HttpHeaders()
           .set('Content-Type', 'application/x-www-form-urlencoded')
       });   
+  }
+
+  get(key: string) {
+    return this.http.get<{value: string}>(environment.imageApiUrl + 'image/' + key);
   }
 }

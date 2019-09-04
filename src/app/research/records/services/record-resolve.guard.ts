@@ -15,7 +15,7 @@ export class RecordResolver implements Resolve<Record> {
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): 
         Observable<Record> | Observable<never> {
         
-        let id: number = parseInt(route.paramMap.get("id"));
+        let id: string = route.paramMap.get("id");
 
         let o = this.recordsService.get(id);
         let o1 = o.pipe(  

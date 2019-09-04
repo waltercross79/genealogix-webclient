@@ -50,12 +50,9 @@ export class ConnectPersonsDialogComponent implements OnInit {
     this.person = person;
 
     if(person != null) {
-      this.pir = new PersonInRecord();
-      this.pir.id = person.id;
-      this.pir.firstName = person.firstName;
-      this.pir.lastName = person.lastName;
-      this.pir.dob = person.dateOfBirth;
-      this.pir.role = this.personRoleControl.value;
+      this.pir = new PersonInRecord(this.personRoleControl.value,
+        person.firstName, person.lastName, person.id, person.dateOfBirth);
+      
       this.valid = true;
     } else {
       this.pir = null;

@@ -8,6 +8,7 @@ import { MatDialog } from '@angular/material';
 import { RecordsService } from '../services/records.service';
 import { PersonService } from '../../persons/services/person.service';
 import { ImageService } from 'src/app/shared/image.service';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-add-record',
@@ -25,17 +26,19 @@ export class AddComponent implements OnInit {
   @ViewChild('file', { static: true }) file;
   @ViewChild('viewer', { static: true }) viewer;
   @ViewChild('persons', { static: true }) persons;
-  images: string[] = [];
+  images = [];
   recordTypeControl: FormControl = new FormControl('', [Validators.required]);
   recordDateControl: FormControl = new FormControl('', [Validators.required]);
   hasImage: boolean = false;
   recordDetailsForm: FormGroup;
   fileForm: FormGroup;
   fileName: string;
+  imageIndexOne = 0;
 
   constructor(private uiService: UiService, private router: Router,
     private fb: FormBuilder, public dialog: MatDialog, 
-    private recordsService: RecordsService, private imageService: ImageService) { 
+    private recordsService: RecordsService, private imageService: ImageService,
+    private sanitizer: DomSanitizer) { 
     this.record = new RegistryRecord();
   }
 
@@ -98,9 +101,20 @@ export class AddComponent implements OnInit {
   onFileSelected() {    
     let fileReader = new FileReader();
     fileReader.onload = (e) => {      
-      this.images = [(fileReader.result as string).replace(/data:.*;base64,/g, '')];
+      this.images = [this.sanitizer.bypassSecurityTrustUrl(fileReader.result as string)];
       this.fileName = this.file.nativeElement.files[0].name;
-      this.hasImage = true;         
+      this.hasImage = true;      
+      
+      // Upload image to the server and obtain unique key to associate with the record/image.
+      // Note that images array holds data: urls. Need to remove the URL portion before submit.
+      this.imageService.saveImage(new ImageFile(this.fileName, this.images[0]))
+        .subscribe(key => 
+          {
+            if(!this.record.imageIdentifiers) {
+              this.record.imageIdentifiers = [];
+            }
+            this.record.imageIdentifiers.push(key.value);
+          });
     }
     
     fileReader.readAsDataURL(this.file.nativeElement.files[0]);
@@ -118,16 +132,10 @@ export class AddComponent implements OnInit {
       this.recordDetailsForm.value.folio,
       this.recordDetailsForm.value.registry,
       this.record.persons,
-      null
+      null,
+      this.record.imageIdentifiers
     )).subscribe(r => {
-      this.imageService.saveImage(this.record.image, r.id)
-        .subscribe(s => {
-          console.log(s);
-          this.router.navigate(['/', 'research', 'records', r.id]);
-        },
-        err => {
-          this.uiService.showToast(err);
-        });      
+      this.router.navigate(['/', 'research', 'records', r.id]);      
     },
     error => {
       this.uiService.showToast(error);
@@ -156,3 +164,4 @@ export class AddComponent implements OnInit {
     });
   }  
 }
+
